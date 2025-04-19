@@ -27,16 +27,7 @@ export default function Footer() {
             viewport={{ once: true }}
             whileHover={{ scale: 1.01 }}
           >
-            Built with{" "}
-            <motion.span
-              className="inline-block"
-              initial={{ rotate: 0 }}
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-            >
-              💻
-            </motion.span>{" "}
-            and{" "}
+            Born from passion {" "}
             <motion.span
               className="inline-block"
               animate={{
@@ -50,6 +41,17 @@ export default function Footer() {
             >
               ❤️
             </motion.span>
+            
+            
+            {" "} tested in the lab {" "}
+            <motion.span
+              className="inline-block"
+              initial={{ rotate: 0 }}
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.5 }}
+            >
+              💻
+            </motion.span>{" "}
           </motion.p>
         </motion.div>
       </div>
