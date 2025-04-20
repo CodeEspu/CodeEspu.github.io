@@ -136,11 +136,15 @@ export const skills = {
     "SIEM",
     "Wazuh",
     "ELK",
+    "pfsense",
     "Kibana",
     "Shodan",
     "Suricata",
+    "GnuPG",
+    "OpenSSL",
     "Snort",
     "Zabbix",
+    "RADIUS Server",
     "Cisco Packet Tracer",
     "ElasticSearch", 
     "Logstash",
@@ -166,7 +170,6 @@ export const skills = {
     "Docker",
     "Google Dork",
     "Genymotion",
-
 
   ],
   
