@@ -11,23 +11,51 @@ export const workExperience = [
   {
     company: "Sound Black SLU",
     location: "Santa Cruz de Tenerife, Spain",
-    position: "Audiovisual Technician",
+    position: "🔊 Audiovisual Technician",
     period: "June 2024 - Sept 2024",
     achievements: [
-      "Assembly of sound, video, and lighting equipment for events.",
-      "Technical project management, problem-solving, and team coordination",
+      "➜ Assembly of sound, video, and lighting equipment for events.",
+      "➜ Technical project management, problem-solving, and team coordination",
     ],
   },
   {
     company: "Sonopluss SL",
     location: "Santa Cruz de Tenerife, Spain",
-    position: "Internship as Sound Technician",
+    position: "🔊 Internship as Sound Technician",
     period: "Mar 2024 - June 2024",
     achievements: [
-      "Assembly and organization of sound equipment and structures.",
-      "Attention to detail, organization, and teamwork.",
+      "➜ Assembly and organization of sound equipment and structures.",
+      "➜ Attention to detail, organization, and teamwork.",
     ],
   },
+  {
+    company: "Eldorado.gg",
+    location: "Remote",
+    position: "🎮 Freelance",
+    period: "Jan 2016 - Jan 2023",
+    achievements: [
+      "➜ Strategic Thinking & Game Analysis",
+      "➜ Client Relationship Management",
+      "➜ Effective Communication & Mentorship",
+      "➜ Branding & Personal Marketing (+500 satisfied clients worldwide)",
+      "➜ Remote Work & Time Management",
+      "➜ Leadership & Team Coordination",
+    ],
+  },
+  {
+    company: "Villarreal C.F",
+    location: "Remote",
+    position: "🎮 Professional Gamer",
+    period: "Mar 2019 - May 2019",
+    achievements: [
+      "➜ Top-ranking at national and international level",
+      "➜ Content creation for social media, stream and online community management",
+      "➜ Personal brand development and management",
+      "➜ Team leadership, coaching, and mentoring",
+    ],
+  },
+
+
 ];
 
 export const education = [
