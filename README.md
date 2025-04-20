@@ -22,7 +22,7 @@ Cybersecurity professional with a background in IT and a focus on offensive secu
 
 ## ✉️ Contact
 
-- 🌐 [Portfolio Website](https://codeespu.github.io/portfolio)
+- 🌐 [Portfolio Website](https://codeespu.github.io)
 - 💼 [LinkedIn](https://linkedin.com/in/codeespu)
 - 📧 andrestf99@gmail.com
 
