@@ -60,6 +60,16 @@ export const workExperience = [
 
 export const education = [
   {
+    institution: "University of La Laguna",
+    location: "Remote",
+    degree: "Diginnova Program: Innovation, Digital Transformation, and Sustainability",
+    period: "Apr 2025 - Jun 2026",
+    achievements: [
+      "Dual training program focused on employability, combining 7 months of online education in innovation, digitalization, and sustainability, followed by 4 months of paid internships in companies based in the Canary Islands.",
+      "Includes a university-issued certification and practical content aligned with the current professional landscape.",
+      ],
+  },
+  {
     institution: "CIFP César Manrique",
     location: "Santa Cruz de Tenerife, Spain",
     degree: "Specialization Course in Cybersecurity IT",
