@@ -65,8 +65,8 @@ export const education = [
     degree: "Diginnova Program: Innovation, Digital Transformation, and Sustainability",
     period: "Apr 2025 - Jun 2026",
     achievements: [
-      "Dual training program focused on employability, combining 7 months of online education in innovation, digitalization, and sustainability, followed by 4 months of paid internships in companies based in the Canary Islands.",
-      "Includes a university-issued certification and practical content aligned with the current professional landscape.",
+      "➜ Dual training program focused on employability, combining 7 months of online education in innovation, digitalization, and sustainability, followed by 4 months of paid internships in companies based in the Canary Islands.",
+      "➜ Includes a university-issued certification and practical content aligned with the current professional landscape.",
       ],
   },
   {
@@ -75,9 +75,9 @@ export const education = [
     degree: "Specialization Course in Cybersecurity IT",
     period: "Sept 2024 - Jun 2025",
     achievements: [
-      "Class Representative.",
-      "Development of Practical Projects.",
-      "Participation in Cybersecurity Events (e.g Hackr0n)."
+      "➜ Class Representative.",
+      "➜ Development of Practical Projects.",
+      "➜ Participation in Cybersecurity Events (e.g Hackr0n)."
       ],
   },
 
