@@ -242,16 +242,32 @@ export default function HeroSection() {
         </motion.div>
 
         <MotionWrapper>
-          <div className="bg-gradient-to-r from-blue-500/10 to-pink-500/10 backdrop-blur-sm backdrop-filter p-4 rounded-lg border border-blue-500/20 dark:border-blue-500/10 shadow-sm">
-            <p className="text-muted-foreground pl-4 py-2 mb-4 relative"
-              style={{ textAlign: 'justify' }}>
-              <span className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-500 to-pink-500 rounded-full"></span>
-              💻 <strong>{language === "en" ? "Telecommunications and IT Systems Technician" : "Técnico en Sistemas de Telecomunicaciones e Informáticos"}</strong> {language === "en" ? "with specialized training in" : "con formación especializada en"} <strong>{language === "en" ? "IT Cybersecurity" : "Ciberseguridad IT"}</strong>, {language === "en" ? "covering key areas such as" : "cubriendo áreas clave como"} <span className="font-bold text-cyan-600">Digital Forensics, Cybersecurity Regulations, Network Hardening, Incident Response</span>, and <span className="font-bold text-cyan-600">Ethical Hacking.</span><br /> <br />
-              🔍 {language === "en" ? "Currently focused on" : "Actualmente enfocado en"} <span className="font-bold text-red-600">Pentesting and Red Teaming</span>, {language === "en" ? "preparing for the" : "preparándome para la"} <span className="font-bold text-red-600">eJPT (Junior Penetration Tester)</span> {language === "en" ? "certification as the first step toward a professional career in offensive cybersecurity." : "como primer paso hacia una carrera profesional en ciberseguridad ofensiva."}<br /> <br />
-              💼 {language === "en" ? "Actively seeking a job or internship in the cybersecurity sector, with a strong interest in" : "Buscando activamente empleo o prácticas en el sector de ciberseguridad, con especial interés en"} <strong>Red Team / Pentesting</strong>, {language === "en" ? "while remaining open to opportunities in SOC, vulnerability assessment, digital forensics, or incident handling." : "manteniéndome abierto a oportunidades en SOC, evaluación de vulnerabilidades, forensia digital o gestión de incidentes."}
-            </p>
-          </div>
-        </MotionWrapper>
+  <div className="bg-gradient-to-r from-blue-500/10 to-pink-500/10 backdrop-blur-sm backdrop-filter p-4 rounded-lg border border-blue-500/20 dark:border-blue-500/10 shadow-sm">
+    <p className="text-muted-foreground pl-4 py-2 mb-4 relative"
+      style={{ textAlign: 'justify' }}>
+      <span className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-500 to-pink-500 rounded-full"></span>
+      💻 <strong>{language === "en" ? "Telecommunications and IT Systems Technician" : "Técnico en Sistemas de Telecomunicaciones e Informáticos"}</strong> {language === "en" ? "with specialized training in" : "con formación especializada en"} <strong>{language === "en" ? "IT Cybersecurity" : "Ciberseguridad IT"}</strong>, {language === "en" ? "covering key areas such as " : "cubriendo áreas clave como "} 
+      <span className="font-bold text-cyan-600">
+        {language === "en" ? "Digital Forensics" : "Informática Forense"}, 
+        {language === "en" ? " Cybersecurity Regulations" : " Normativas de Ciberseguridad"}, 
+        {language === "en" ? " Network Hardening" : " Seguridad en Redes"}, 
+        {language === "en" ? " Incident Response " : " Respuesta ante Incidentes "}
+      </span>  
+      {language === "en" ? "and" : "y"} <span className="font-bold text-cyan-600">{language === "en" ? "Ethical Hacking" : "Hacking Ético"}</span>.<br /> <br />
+      
+      🔍 {language === "en" ? "Currently focused on" : "Actualmente enfocado en"} <span className="font-bold text-red-600">
+        {language === "en" ? "Pentesting and Red Teaming" : "Pentesting y Red Team"}
+      </span>, {language === "en" ? "preparing for the " : "preparándome para la "} 
+      <span className="font-bold text-red-600">{language === "en" ? "eJPT (Junior Penetration Tester) " : "eJPT (Junior Penetration Tester) "}</span> 
+      {language === "en" ? "certification as the first step toward a professional career in offensive cybersecurity." : "como primer paso hacia una carrera profesional en ciberseguridad ofensiva."}<br /> <br />
+      
+      💼 {language === "en" ? "Actively seeking a job or internship in the cybersecurity sector, with a strong interest in" : "Buscando activamente empleo o prácticas en el sector de ciberseguridad, con especial interés en"} 
+      <strong>{language === "en" ? " Red Team / Pentesting" : " Red Team / Pentesting"}</strong>, 
+      {language === "en" ? " while remaining open to opportunities in SOC, vulnerability assessment, digital forensics, or incident handling." : " manteniéndome abierto a oportunidades en SOC, evaluación de vulnerabilidades, forensia digital o gestión de incidentes."}
+    </p>
+  </div>
+</MotionWrapper>
+
       </div>
     </section>
   );
