@@ -440,7 +440,7 @@ export const translations: Record<"en" | "es", {
       backendDevelopment: ["SIEM", "Wazuh", "ELK", "pfsense", "Kibana", "Shodan", "Suricata", "GnuPG", "OpenSSL", "Snort", "Zabbix",
          "RADIUS Server", "Cisco Packet Tracer", "ElasticSearch", "Logstash", "Nginx", "PostgreSQL", "MariaDB", "Apache"],
       databaseAndStorage: ["Volatility", "Autopsy", "Registry Explorer"],
-      cloudAndDevOps: ["GitHub", "Docker", "Google Dork"],
+      cloudAndDevOps: ["GitHub", "Docker", "Google Dork", "Genymotion"],
     },
   },
 };
