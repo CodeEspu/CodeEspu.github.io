@@ -65,8 +65,8 @@ export const education = [
     degree: "Diginnova Program: Innovation, Digital Transformation, and Sustainability",
     period: "Apr 2025 - Jun 2026",
     achievements: [
-      "➜ Dual training program focused on employability, combining 7 months of online education in innovation, digitalization, and sustainability, followed by 4 months of paid internships in companies based in the Canary Islands.",
-      "➜ Includes a university-issued certification and practical content aligned with the current professional landscape.",
+      "➜ Dual training program focused on employability...",
+      "➜ Includes a university-issued certification and practical content...",
       ],
   },
   {
@@ -191,6 +191,11 @@ export const translations: Record<"en" | "es", {
     period: string;
     achievements: string[];
   }>;
+  projects: Array<{
+    title: string;
+    github: string;
+    description: string;
+  }>;
   education: Array<{
     institution: string;
     location: string;
@@ -262,6 +267,13 @@ export const translations: Record<"en" | "es", {
         ],
       },
     ],
+    projects: [
+      {
+        title: "Blue Team Lab on Docker",
+        github: "https://github.com/CodeEspu/Docker-BlueTeam",
+        description: "Deployed a containerized security monitoring environment.\n\n Using Suricata (IDS mode) for real-time network traffic analysis. Integrated Wazuh as a SIEM for log enrichment and correlation, with Filebeat forwarding events to Logstash. Visualized alerts and metrics through the ELK Stack (Elasticsearch, Logstash, Kibana)."
+      }
+    ],
     education: [
       {
         institution: "University of La Laguna",
@@ -269,8 +281,8 @@ export const translations: Record<"en" | "es", {
         degree: "Diginnova Program: Innovation, Digital Transformation, and Sustainability",
         period: "Apr 2025 - Jun 2026",
         achievements: [
-          "➜ Dual training program focused on employability...",
-          "➜ Includes a university-issued certification...",
+          "➜ Dual training program focused on employability.",
+          "➜ Includes a university-issued certification and practical content.",
         ],
       },
       {
@@ -371,6 +383,13 @@ export const translations: Record<"en" | "es", {
         ],
       },
     ],
+    projects: [
+      {
+        title: "Laboratorio Blue Team en Docker",
+        github: "https://github.com/CodeEspu/Docker-BlueTeam",
+        description: "Implementé un entorno de monitorización de seguridad en contenedores Docker\n\n. Usando Suricata (modo IDS) para análisis de tráfico en tiempo real. Integré Wazuh como SIEM para enriquecer y correlacionar logs, con Filebeat enviando eventos a Logstash. Las alertas y métricas se visualizaron mediante el stack ELK (Elasticsearch, Logstash, Kibana)."
+      }
+    ],
     education: [
       {
         institution: "Universidad de La Laguna",
@@ -378,8 +397,8 @@ export const translations: Record<"en" | "es", {
         degree: "Programa Diginnova: Innovación, Transformación Digital y Sostenibilidad",
         period: "Abril 2025 - Junio 2026",
         achievements: [
-          "➜ Programa de formación dual enfocado en la empleabilidad...",
-          "➜ Incluye certificación universitaria y contenido práctico...",
+          "➜ Programa de formación dual enfocado en la empleabilidad.",
+          "➜ Incluye certificación universitaria y contenido práctico."
         ],
       },
       {

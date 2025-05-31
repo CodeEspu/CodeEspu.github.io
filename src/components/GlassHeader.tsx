@@ -127,7 +127,7 @@ export default function GlassHeader() {
   const personalInfo = translations[language]?.personalInfo;
 
   return (
-    <header className="sticky z-50 w-full backdrop-blur-md backdrop-filter bg-background/70 dark:bg-background/40 border-b border-border/40">
+    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md backdrop-filter bg-background/70 dark:bg-background/40 border-b border-border/40">
       <div className="container max-w-4xl mx-auto p-4 flex justify-between items-center">
         <motion.a className="flex items-center text-lg font-medium" href="/" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           ✨ {personalInfo?.name}
@@ -135,7 +135,7 @@ export default function GlassHeader() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          {["education", "skills", "experience"].map((item, index) => (
+          {["skills", "projects", "experience", "education"].map((item, index) => (
             <motion.a
               key={item}
               href={`#${item}`}
@@ -145,9 +145,21 @@ export default function GlassHeader() {
               transition={{ duration: 0.2, delay: index * 0.1 }}
               whileHover={{ y: -2 }}
             >
-              {language === "en" 
-                ? (item === "education" ? "🎓 Education" : item === "skills" ? "🛠 Skills" : "💼 Experience") 
-                : (item === "education" ? "🎓 Educación" : item === "skills" ? "🛠 Habilidades" : "💼 Experiencia")}
+              {language === "en"
+                ? (item === "skills"
+                    ? "🛠 Skills"
+                    : item === "projects"
+                    ? "🚀 Projects"
+                    : item === "experience"
+                    ? "💼 Experience"
+                    : "🎓 Education")
+                : (item === "skills"
+                    ? "🛠 Habilidades"
+                    : item === "projects"
+                    ? "🚀 Proyectos"
+                    : item === "experience"
+                    ? "💼 Experiencia"
+                    : "🎓 Educación")}
             </motion.a>
           ))}
         </nav>

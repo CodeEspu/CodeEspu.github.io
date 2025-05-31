@@ -13,6 +13,11 @@ export const translations: Record<"en" | "es", {
     period: string;
     achievements: string[];
   }>;
+  projects: Array<{
+    title: string;
+    github: string;
+    description: string;
+  }>;
   education: Array<{
     institution: string;
     location: string;
@@ -57,6 +62,13 @@ export const translations: Record<"en" | "es", {
           "➜ Attention to detail, organization, and teamwork.",
         ],
       },
+    ],
+    projects: [
+      {
+        title: "Blue Team Lab on Docker",
+        github: "https://github.com/CodeEspu/Docker-BlueTeam",
+        description: "Deployed a containerized security monitoring environment.\n\n Using Suricata (IDS mode) for real-time network traffic analysis. Integrated Wazuh as a SIEM for log enrichment and correlation, with Filebeat forwarding events to Logstash. Visualized alerts and metrics through the ELK Stack (Elasticsearch, Logstash, Kibana)."
+      }
     ],
     education: [
       {
@@ -134,6 +146,13 @@ export const translations: Record<"en" | "es", {
           "➜ Atención al detalle, organización y trabajo en equipo.",
         ],
       },
+    ],
+    projects: [
+      {
+        title: "Laboratorio Blue Team en Docker",
+        github: "https://github.com/CodeEspu/Docker-BlueTeam",
+        description: "Implementé un entorno de monitorización de seguridad en contenedores Docker.\n\n Usando Suricata (modo IDS) para análisis de tráfico en tiempo real. Integré Wazuh como SIEM para enriquecer y correlacionar logs, con Filebeat enviando eventos a Logstash. Las alertas y métricas se visualizaron mediante el stack ELK (Elasticsearch, Logstash, Kibana)."
+      }
     ],
     education: [
       {
