@@ -45,34 +45,10 @@ export default function ProjectsSection() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  {Array.isArray(project.description) ? (
-                    <ul className="list-disc ml-4 space-y-1 text-sm group-hover:space-y-2 transition-all duration-300">
-                      {project.description.map((desc: string, i: number) => (
-                        <motion.li
-                          key={i}
-                          className="text-muted-foreground"
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: i * 0.1 }}
-                          viewport={{ once: true }}
-                        >
-                          {desc}
-                        </motion.li>
-                      ))}
-                    </ul>
-                  ) : (
-                    (() => {
-                      const [first, ...rest] = project.description.split(/\n+/);
-                      return (
-                        <>
-                          <p className="text-muted-foreground text-sm text-justify">{first}</p>
-                          {rest.length > 0 && (
-                            <p className="text-muted-foreground text-sm text-justify">{rest.join(" ")}</p>
-                          )}
-                        </>
-                      );
-                    })()
-                  )}
+                  <div 
+                    className="text-muted-foreground text-sm space-y-4"
+                    dangerouslySetInnerHTML={{ __html: project.description }}
+                  />
                 </CardContent>
                 <CardFooter className="flex justify-center md:justify-start items-center border-t border-border/30 bg-gradient-to-r from-purple-500/5 to-pink-500/5">
                   <motion.a
