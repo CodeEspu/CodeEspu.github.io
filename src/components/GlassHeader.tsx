@@ -39,7 +39,7 @@ export default function GlassHeader() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          {["skills", "projects", "experience", "education"].map((item, index) => (
+          {["skills", "projects", "experience", "education", "contact"].map((item, index) => (
             <motion.a
               key={item}
               href={`#${item}`}
@@ -49,21 +49,27 @@ export default function GlassHeader() {
               transition={{ duration: 0.2, delay: index * 0.1 }}
               whileHover={{ y: -2 }}
             >
-              {language === "en"
-                ? (item === "skills"
-                    ? "🛠 Skills"
-                    : item === "projects"
-                    ? "🚀 Projects"
-                    : item === "experience"
-                    ? "💼 Experience"
-                    : "🎓 Education")
-                : (item === "skills"
-                    ? "🛠 Habilidades"
-                    : item === "projects"
-                    ? "🚀 Proyectos"
-                    : item === "experience"
-                    ? "💼 Experiencia"
-                    : "🎓 Educación")}
+              <span className="inline-flex items-center gap-1">
+                {language === "en"
+                  ? (item === "skills"
+                      ? <><span className="inline-block">🛠</span> Skills</>
+                      : item === "projects"
+                      ? <><span className="inline-block">🚀</span> Projects</>
+                      : item === "experience"
+                      ? <><span className="inline-block">💼</span> Experience</>
+                      : item === "contact"
+                      ? <><span className="inline-block">📧</span> Contact</>
+                      : <><span className="inline-block">🎓</span> Education</>)
+                  : (item === "skills"
+                      ? <><span className="inline-block">🛠</span> Habilidades</>
+                      : item === "projects"
+                      ? <><span className="inline-block">🚀</span> Proyectos</>
+                      : item === "experience"
+                      ? <><span className="inline-block">💼</span> Experiencia</>
+                      : item === "contact"
+                      ? <><span className="inline-block">📧</span> Contacto</>
+                      : <><span className="inline-block">🎓</span> Educación</>)}
+              </span>
             </motion.a>
           ))}
         </nav>
@@ -101,7 +107,7 @@ export default function GlassHeader() {
             exit={{ opacity: 0, x: 100 }}
           >
             <div className="p-6 flex flex-col space-y-6">
-              {["skills", "projects", "experience", "education"].map((item) => (
+              {["skills", "projects", "experience", "education", "contact"].map((item) => (
                 <motion.a
                   key={item}
                   href={`#${item}`}
@@ -109,21 +115,27 @@ export default function GlassHeader() {
                   onClick={() => setIsMenuOpen(false)}
                   whileHover={{ x: 10 }}
                 >
-                  {language === "en"
-                    ? (item === "skills"
-                        ? "🛠 Skills"
-                        : item === "projects"
-                        ? "🚀 Projects"
-                        : item === "experience"
-                        ? "💼 Experience"
-                        : "🎓 Education")
-                    : (item === "skills"
-                        ? "🛠 Habilidades"
-                        : item === "projects"
-                        ? "🚀 Proyectos"
-                        : item === "experience"
-                        ? "💼 Experiencia"
-                        : "🎓 Educación")}
+                  <span className="inline-flex items-center gap-1">
+                    {language === "en"
+                      ? (item === "skills"
+                          ? <><span className="inline-block">🛠</span> Skills</>
+                          : item === "projects"
+                          ? <><span className="inline-block">🚀</span> Projects</>
+                          : item === "experience"
+                          ? <><span className="inline-block">💼</span> Experience</>
+                          : item === "contact"
+                          ? <><span className="inline-block">📧</span> Contact</>
+                          : <><span className="inline-block">🎓</span> Education</>)
+                      : (item === "skills"
+                          ? <><span className="inline-block">🛠</span> Habilidades</>
+                          : item === "projects"
+                          ? <><span className="inline-block">🚀</span> Proyectos</>
+                          : item === "experience"
+                          ? <><span className="inline-block">💼</span> Experiencia</>
+                          : item === "contact"
+                          ? <><span className="inline-block">📧</span> Contacto</>
+                          : <><span className="inline-block">🎓</span> Educación</>)}
+                  </span>
                 </motion.a>
               ))}
             </div>

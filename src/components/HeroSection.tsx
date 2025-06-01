@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { translations } from "@/lib/translations";
-import { Mail, Github, MapPin, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import MotionWrapper from "./MotionWrapper";
 
@@ -65,22 +64,18 @@ export default function HeroSection() {
 
             <motion.div className="flex flex-col gap-2 items-center md:items-start" variants={containerVariants}>
               <motion.div className="flex items-center text-sm text-muted-foreground" variants={childVariants} whileHover={{ scale: 1.05, color: "#4b5563" }}>
-                <MapPin className="h-4 w-4 mr-2" />
                 📍 {personalInfo?.location}
               </motion.div>
 
-              <motion.a href={`mailto:${personalInfo?.email}`} className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors" variants={childVariants} whileHover={{ scale: 1.05, color: "#4b5563" }}>
-                <Mail className="h-4 w-4 mr-2" />
-                ✉️ {personalInfo?.email}
+              <motion.a href="#contact" className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors" variants={childVariants} whileHover={{ scale: 1.05, color: "#4b5563" }}>
+                ✉️ {language === "en" ? "Contact Me" : "Contáctame"}
               </motion.a>
 
               <motion.a href={personalInfo?.github} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors" variants={childVariants} whileHover={{ scale: 1.05, color: "#4b5563" }}>
-                <Github className="h-4 w-4 mr-2" />
                 🌟 GitHub
               </motion.a>
 
               <motion.a href={personalInfo?.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors" variants={childVariants} whileHover={{ scale: 1.05, color: "#4b5563" }}>
-                <Linkedin className="h-4 w-4 mr-2" />
                 🔗 LinkedIn
               </motion.a>
             </motion.div>
