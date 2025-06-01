@@ -29,7 +29,7 @@ export default function Footer() {
             className="text-sm text-muted-foreground text-center md:text-left"
             whileHover={{ scale: 1.01 }}
           >
-            &copy; {new Date().getFullYear()} Rishikesh S. template | Adaptado por {translations[language].personalInfo.name}
+            &copy; {new Date().getFullYear()} {language === "en" ? "Rishikesh S. template | Adapted by" : "Plantilla de Rishikesh S. | Adaptada por"} {translations[language].personalInfo.name}
           </motion.p>
           <motion.p
             className="text-sm text-muted-foreground mt-2 md:mt-0 text-center md:text-left"

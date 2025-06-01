@@ -8,6 +8,7 @@ import { Button } from "./ui/button";
 
 export default function GlassHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
   const [language, setLanguage] = useState<"en" | "es">(
     (localStorage.getItem("language") as "en" | "es") || "en"
   );
@@ -42,7 +43,7 @@ export default function GlassHeader() {
             <motion.a
               key={item}
               href={`#${item}`}
-              className="transition-colors hover:text-foreground/80 text-foreground/60"
+              className="transition-colors hover:text-foreground/80 text-foreground/60 rounded-lg px-3 py-1 hover:bg-foreground/10"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2, delay: index * 0.1 }}
@@ -82,6 +83,53 @@ export default function GlassHeader() {
           </motion.button>
         </div>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden">
+          <motion.div
+            className="fixed inset-0 top-[60px] bg-black/40 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsMenuOpen(false)}
+          />
+          <motion.nav
+            className="fixed right-0 top-[60px] w-64 h-auto bg-black/60 dark:bg-black/80 backdrop-blur-xl border-l border-border/40 rounded-l-2xl"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 100 }}
+          >
+            <div className="p-6 flex flex-col space-y-6">
+              {["skills", "projects", "experience", "education"].map((item) => (
+                <motion.a
+                  key={item}
+                  href={`#${item}`}
+                  className="text-lg font-medium text-foreground/60 hover:text-foreground/80 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                  whileHover={{ x: 10 }}
+                >
+                  {language === "en"
+                    ? (item === "skills"
+                        ? "🛠 Skills"
+                        : item === "projects"
+                        ? "🚀 Projects"
+                        : item === "experience"
+                        ? "💼 Experience"
+                        : "🎓 Education")
+                    : (item === "skills"
+                        ? "🛠 Habilidades"
+                        : item === "projects"
+                        ? "🚀 Proyectos"
+                        : item === "experience"
+                        ? "💼 Experiencia"
+                        : "🎓 Educación")}
+                </motion.a>
+              ))}
+            </div>
+          </motion.nav>
+        </div>
+      )}
     </header>
   );
 }
