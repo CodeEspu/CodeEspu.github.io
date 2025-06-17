@@ -1,5 +1,5 @@
 // This file contains the translations for the personal portfolio.
-export const translations: Record<"en" | "es", {
+export const translations: Record<"es" | "en", {
   personalInfo: {
     name: string;
     location: string;
@@ -56,11 +56,12 @@ export const translations: Record<"en" | "es", {
       {
         company: "Sonopluss SL",
         location: "Santa Cruz de Tenerife, Spain",
-        position: "🔊 Internship as Sound Technician",
+        position: "🔊 Sound Technician",
         period: "Mar 2024 - June 2024",
         achievements: [
           "➜ Assembly and organization of sound equipment and structures.",
           "➜ Attention to detail, organization, and teamwork.",
+          "➜ Internship period",
         ],
       },
       {
@@ -104,6 +105,7 @@ export const translations: Record<"en" | "es", {
         degree: "Diginnova Program: Innovation, Digital Transformation, and Sustainability",
         period: "Apr 2025 - Jun 2026",
         achievements: [
+          "➜ Duration: 180 theoretical hours and 480 practical hours.",
           "➜ Dual training program focused on employability.",
           "➜ Includes a university-issued certification and practical content.",
         ],
@@ -114,6 +116,7 @@ export const translations: Record<"en" | "es", {
         degree: "Specialization Course in Cybersecurity IT",
         period: "Sept 2024 - Jun 2025",
         achievements: [
+          "➜ Duration: 720 hours of in-person training.",
           "➜ Class Representative.",
           "➜ Development of Practical Projects.",
           "➜ Participation in Cybersecurity Events (e.g Hackr0n)."
@@ -122,7 +125,7 @@ export const translations: Record<"en" | "es", {
       {
         institution: "CIFP César Manrique",
         location: "Santa Cruz de Tenerife, Spain",
-        degree: "Telecommunications and Computer Systems",
+        degree: "Higher Technician in Telecommunications and Computer Systems",
         period: "Sept 2022 - Jun 2024",
       },
       {
@@ -172,11 +175,12 @@ export const translations: Record<"en" | "es", {
       {
         company: "Sonopluss SL",
         location: "Santa Cruz de Tenerife, Spain",
-        position: "🔊 Prácticas como Técnico de Sonido",
+        position: "🔊 Técnico de Sonido",
         period: "Marzo 2024 - Junio 2024",
         achievements: [
           "➜ Montaje y organización de equipos de sonido y estructuras.",
           "➜ Atención al detalle, organización y trabajo en equipo.",
+          "➜ Periodo de prácticas",
         ],
       },
       {
@@ -220,6 +224,7 @@ export const translations: Record<"en" | "es", {
         degree: "Programa Diginnova: Innovación, Transformación Digital y Sostenibilidad",
         period: "Abril 2025 - Junio 2026",
         achievements: [
+          "➜ Duración: 180 horas teóricas y 480 horas prácticas.",
           "➜ Programa de formación dual enfocado en la empleabilidad.",
           "➜ Incluye certificación universitaria y contenido práctico."
         ],
@@ -230,6 +235,7 @@ export const translations: Record<"en" | "es", {
         degree: "Curso de Especialización en Ciberseguridad IT",
         period: "Septiembre 2024 - Junio 2025",
         achievements: [
+          "➜ Duración: 720 horas presenciales.",
           "➜ Delegado de clase.",
           "➜ Desarrollo de proyectos prácticos.",
           "➜ Participación en eventos de Ciberseguridad (e.g Hackr0n)."
@@ -239,7 +245,7 @@ export const translations: Record<"en" | "es", {
       {
         institution: "CIFP César Manrique",
         location: "Santa Cruz de Tenerife, España",
-        degree: "Técnico en Sistemas de Telecomunicaciones e Informáticos",
+        degree: "CFGS Técnico en Sistemas de Telecomunicaciones e Informáticos",
         period: "Sept 2022 - Jun 2024",
       },
       {

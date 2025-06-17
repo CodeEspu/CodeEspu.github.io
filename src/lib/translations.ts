@@ -1,4 +1,4 @@
-export const translations: Record<"en" | "es", {
+export const translations: Record<"es" | "en", {
   personalInfo: {
     name: string;
     location: string;
@@ -33,7 +33,7 @@ export const translations: Record<"en" | "es", {
     cloudAndDevOps: string[];
   };
 }> = {
-  en: {
+    en: {
     personalInfo: {
       name: "Andrés E. Sánchez García",
       location: "Santa Cruz de Tenerife, Spain",
@@ -55,11 +55,12 @@ export const translations: Record<"en" | "es", {
       {
         company: "Sonopluss SL",
         location: "Santa Cruz de Tenerife, Spain",
-        position: "🔊 Internship as Sound Technician",
+        position: "🔊 Sound Technician",
         period: "Mar 2024 - June 2024",
         achievements: [
           "➜ Assembly and organization of sound equipment and structures.",
           "➜ Attention to detail, organization, and teamwork.",
+          "➜ Internship period",
         ],
       },
     ],
@@ -144,11 +145,12 @@ export const translations: Record<"en" | "es", {
       {
         company: "Sonopluss SL",
         location: "Santa Cruz de Tenerife, España",
-        position: "🔊 Prácticas como Técnico de Sonido",
+        position: "🔊 Técnico de Sonido",
         period: "Mar 2024 - Junio 2024",
         achievements: [
           "➜ Montaje y organización de equipos de sonido y estructuras.",
           "➜ Atención al detalle, organización y trabajo en equipo.",
+          "➜ Periodo de prácticas",
         ],
       },
     ],
