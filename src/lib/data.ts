@@ -117,6 +117,7 @@ export const translations: Record<"es" | "en", {
         period: "Sept 2024 - Jun 2025",
         achievements: [
           "➜ Duration: 720 hours of in-person training.",
+          "➜ Grade: 8.33/10",
           "➜ Class Representative.",
           "➜ Development of Practical Projects.",
           "➜ Participation in Cybersecurity Events (e.g Hackr0n)."
@@ -125,8 +126,15 @@ export const translations: Record<"es" | "en", {
       {
         institution: "CIFP César Manrique",
         location: "Santa Cruz de Tenerife, Spain",
-        degree: "Higher Technician in Telecommunications and Computer Systems",
+        degree: "Higher Technician Diploma in Telecommunications and Computer Systems",
         period: "Sept 2022 - Jun 2024",
+        achievements: [
+          "➜ Grade: 7.86/10",
+          "➜ Configured and maintained communication networks, servers, and IT systems.",
+          "➜ Developed skills in network security, system administration, and technical support.",
+          "➜ Participated in practical projects and internships.",
+          "➜ Development of a digital oscilloscope using a Raspberry Pi Pico"
+          ],
       },
       {
         institution: "CIFP César Manrique",
@@ -142,7 +150,7 @@ export const translations: Record<"es" | "en", {
       },
     ],
     skills: {
-      programmingLanguages: ["Python", "C#", "Bash", "Powershell"],
+      programmingLanguages: ["Python", "C#", "Bash", "Powershell", "HTML", "CSS"],
       frontendDevelopment: ["Wireshark", "Burp Suite CE", "Metasploit", "JohnTheRipper", "CrackMapExec", "OWASP Zap",
     "Setoolkit", "Shodan", "Ettercap", "Haschat", "Nikto", "Hydra", "Aircrack-ng", "SQLmap", "BeEF", "Dirbuster",
     "Cewl", "TheFatRat", "Nessus"],
@@ -236,6 +244,7 @@ export const translations: Record<"es" | "en", {
         period: "Septiembre 2024 - Junio 2025",
         achievements: [
           "➜ Duración: 720 horas presenciales.",
+          "➜ Nota: 8.33/10",
           "➜ Delegado de clase.",
           "➜ Desarrollo de proyectos prácticos.",
           "➜ Participación en eventos de Ciberseguridad (e.g Hackr0n)."
@@ -245,13 +254,20 @@ export const translations: Record<"es" | "en", {
       {
         institution: "CIFP César Manrique",
         location: "Santa Cruz de Tenerife, España",
-        degree: "CFGS Técnico en Sistemas de Telecomunicaciones e Informáticos",
+        degree: "Grado Superior en Técnico de Sistemas de Telecomunicaciones e Informáticos",
         period: "Sept 2022 - Jun 2024",
+        achievements: [
+          "➜ Nota: 7.86/10",
+          "➜ Configuración y mantenimiento de redes de comunicación, servidores y sistemas informáticos.",
+          "➜ Desarrollo de habilidades en seguridad de redes, administración de sistemas y soporte técnico.",
+          "➜ Participación en proyectos prácticos y periodo de prácticas.",
+          "➜ Desarrollo de un osciloscopio digital utilizando una Raspberry Pi Pico"
+          ],
       },
       {
         institution: "CIFP César Manrique",
         location: "Santa Cruz de Tenerife, Spain",
-        degree: "Desarrollo de Aplicaciones Web (DAW)",
+        degree: "Desarrollo de Aplicaciones Web",
         period: "Sept 2019 - Jun 2020",
       },
       {

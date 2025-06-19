@@ -112,7 +112,7 @@ export const translations: Record<"es" | "en", {
       },
     ],
     skills: {
-      programmingLanguages: ["Python", "C#", "Bash", "Powershell"],
+      programmingLanguages: ["Python", "C#", "Bash", "Powershell", "HTML", "CSS", "SQL Queries"],
       frontendDevelopment: ["Wireshark", "Burp Suite CE", "Metasploit", "JohnTheRipper", "CrackMapExec", "OWASP Zap",
     "Setoolkit", "Shodan", "Ettercap", "Haschat", "Nikto", "Hydra", "Aircrack-ng", "SQLmap", "BeEF", "Dirbuster",
     "Cewl", "TheFatRat", "Nessus"],
@@ -204,7 +204,7 @@ export const translations: Record<"es" | "en", {
       
     ],
     skills: {
-      programmingLanguages: ["Python", "C#", "Bash", "Powershell"],
+      programmingLanguages: ["Python", "C#", "Bash", "Powershell", "HTML", "CSS", "Consultas SQL"],
       frontendDevelopment: ["Wireshark", "Burp Suite CE", "Metasploit", "JohnTheRipper", "CrackMapExec", "OWASP Zap",
         "Setoolkit", "Shodan", "Ettercap", "Haschat", "Nikto", "Hydra", "Aircrack-ng", "SQLmap", "BeEF", "Dirbuster",
         "Cewl", "TheFatRat", "Nessus"],
