@@ -74,6 +74,11 @@ export const translations: Record<"es" | "en", {
         title: "Custom Password Dictionary Generator",
         github: "https://github.com/CodeEspu/genpass",
         description: "I developed a Python script designed to automatically generate personalized password dictionaries based on personal data such as first name, last names, birth year, and children's names.<br /><br /> The tool creates textual variations, abbreviations, and adds special characters to generate realistic, context-aware password combinations."
+      },
+      {
+        title: "SSRF to XSS: Exploitation Simulation in PDF Generation",
+        github: "https://github.com/CodeEspu/SSRFtoXSS",
+        description: "This project demonstrates an attack chain where an SSRF vulnerability is chained to achieve an XSS. The simulation details how wkhtmltopdf can be forced to execute malicious JavaScript on the server, confirming the execution of XSS in the backend. 💻🛡️ "
       }
     ],
     education: [
@@ -164,6 +169,11 @@ export const translations: Record<"es" | "en", {
         title: "Generador Personalizado de Diccionarios de Contraseñas",
         github: "https://github.com/CodeEspu/genpass",
         description: "Desarrollé un script en Python diseñado para generar automáticamente diccionarios de contraseñas personalizados a partir de datos personales como nombre, apellidos, año de nacimiento y nombres de hijos.<br /><br />La herramienta crea variaciones textuales, abreviaturas y añade caracteres especiales para generar combinaciones de contraseñas realistas y contextualizadas."
+      },
+      {
+        title: "SSRF a XSS: Simulación de Explotación en Generación de PDFs",
+        github: "https://github.com/CodeEspu/SSRFtoXSS",
+        description: "Este proyecto demuestra una cadena de ataque donde una vulnerabilidad de SSRF es encadenada para lograr un XSS. La simulación detalla cómo se puede forzar a wkhtmltopdf a ejecutar JavaScript malicioso en el servidor, confirmando la ejecución del XSS en el backend. 💻🛡️ "
       }
     ],
     education: [
