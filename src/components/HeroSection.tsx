@@ -57,10 +57,33 @@ export default function HeroSection() {
               <span className="inline-block animate-pulse">✨</span>
             </motion.h1>
 
-            <motion.p className="text-xl text-muted-foreground mb-6" variants={childVariants}>
-  {language === "en" ? "Cybersecurity Specialist 👨‍💻" : "Especialista en Ciberseguridad 👨‍💻"}
-</motion.p>
+            <motion.p className="text-xl text-muted-foreground mb-4" variants={childVariants}>
+              {language === "en" ? "Cybersecurity Specialist 👨‍💻" : "Especialista en Ciberseguridad 👨‍💻"}
+            </motion.p>
 
+            {/* eJPTv2 Badge */}
+            <motion.div className="mb-6 flex justify-center md:justify-start" variants={childVariants}>
+                <a
+                href="https://certs.ine.com/65ba4aed-529c-45fa-8968-917ef8b89973"
+                target="_blank"
+                rel="noopener noreferrer"
+                >
+                <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className="
+                  inline-block cursor-default rounded-md border border-purple-500/50 
+                  bg-black/20 px-3 py-1 text-sm font-mono font-bold text-purple-300 
+                  shadow-md shadow-purple-500/30 transition-all duration-300 
+                  hover:border-red-500/70 hover:text-red-300 hover:shadow-md hover:shadow-red-500/50
+                "
+              >
+                {language === "en" ? "eJPTv2" : "eJPTv2"}
+              </motion.div>
+              </a>
+            </motion.div>
+            
 
             <motion.div className="flex flex-col gap-2 items-center md:items-start" variants={containerVariants}>
               <motion.div className="flex items-center text-sm text-muted-foreground" variants={childVariants} whileHover={{ scale: 1.05, color: "#4b5563" }}>
@@ -115,15 +138,20 @@ export default function HeroSection() {
       </span>  
       {language === "en" ? "and" : "y"} <span className="font-bold text-cyan-600">{language === "en" ? "Ethical Hacking" : "Hacking Ético"}</span>.<br /> <br />
       
-      🔍 {language === "en" ? "Currently focused on" : "Actualmente enfocado en"} <span className="font-bold text-red-600">
-        {language === "en" ? "Pentesting and Red Teaming" : "Pentesting y Red Team"}
-      </span>, {language === "en" ? "preparing for the " : "preparándome para la "} 
-      <span className="font-bold text-red-600">{language === "en" ? "eJPT (Junior Penetration Tester) " : "eJPT (Junior Penetration Tester) "}</span> 
-      {language === "en" ? "certification as the first step toward a professional career in offensive cybersecurity." : "como primer paso hacia una carrera profesional en ciberseguridad ofensiva."}<br /> <br />
+      🔍 {language === "en" ? "Passionate about" : "Apasionado por la"} <span className="font-bold text-blue-600">
+        {language === "en" ? "Cybersecurity. " : "Ciberseguridad. "}
+      </span> {language === "en" ? "Actually amplifying my knowledge in both offensive " : "Actualmente ampliando mis conocimientos en disciplinas tanto ofensivas "} 
+      <span className="font-bold text-red-600">{language === "en" ? "(Read Team) " : "(Red Team) "}</span> 
+      {language === "en" ? "and defensive " : "como defensivas "}
+      <span className="font-bold text-blue-600">{language === "en" ? "(Blue Team) " : "(Blue Team) "}</span>
+      {language === "en" ? "disciplines, aiming to develop a comprehensive understanding of the threat and defense landscape." : "con el objetivo de desarrollar una visión integral del panorama de amenazas y defensa."}
+      <br /> <br />
       
-      💼 {language === "en" ? "Actively seeking a job or internship in the cybersecurity sector, with a strong interest in" : "Buscando activamente empleo o prácticas en el sector de ciberseguridad, con especial interés en"} 
-      <strong>{language === "en" ? " Red Team / Pentesting" : " Red Team / Pentesting"}</strong>, 
-      {language === "en" ? " while remaining open to opportunities in SOC, vulnerability assessment, digital forensics, or incident handling." : " manteniéndome abierto a oportunidades en SOC, evaluación de vulnerabilidades, forensia digital o gestión de incidentes."}
+      💼 {language === "en" ? "Actively seeking a " : "Buscando activamente "} 
+      <span className="font-bold text-blue-600">{language === "en" ? "JOB " : "EMPLEO "}</span>
+      {language === "en" ? " or" : " o"}
+      <span className="font-bold text-blue-600">{language === "en" ? " INTERNSHIP " : " PRÁCTICAS "}</span>
+      {language === "en" ? "in the field of cybersecurity, where I can apply my skills and continue learning." : "en el ámbito de la ciberseguridad, donde pueda aplicar mis habilidades y seguir aprendiendo."} 
     </p>
   </div>
 </MotionWrapper>
@@ -132,7 +160,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
-
-
-

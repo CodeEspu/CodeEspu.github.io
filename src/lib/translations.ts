@@ -41,6 +41,7 @@ export const translations: Record<"es" | "en", {
       github: "https://github.com/CodeEspu",
       linkedin: "https://www.linkedin.com/in/andres-s%C3%A1nchez-garc%C3%ADa/",
     },
+
     workExperience: [
       {
         company: "Sound Black SLU",
@@ -136,6 +137,7 @@ export const translations: Record<"es" | "en", {
       github: "https://github.com/CodeEspu",
       linkedin: "https://www.linkedin.com/in/andres-s%C3%A1nchez-garc%C3%ADa/",
     },
+  
     workExperience: [
       {
         company: "Sound Black SLU",
@@ -226,10 +228,3 @@ export const translations: Record<"es" | "en", {
     },
   },
 };
-
-
-
-
-
-
-
