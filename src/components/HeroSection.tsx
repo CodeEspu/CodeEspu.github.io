@@ -146,12 +146,7 @@ export default function HeroSection() {
       <span className="font-bold text-blue-600">{language === "en" ? "(Blue Team) " : "(Blue Team) "}</span>
       {language === "en" ? "disciplines, aiming to develop a comprehensive understanding of the threat and defense landscape." : "con el objetivo de desarrollar una visión integral del panorama de amenazas y defensa."}
       <br /> <br />
-      
-      💼 {language === "en" ? "Actively seeking a " : "Buscando activamente "} 
-      <span className="font-bold text-blue-600">{language === "en" ? "JOB " : "EMPLEO "}</span>
-      {language === "en" ? " or" : " o"}
-      <span className="font-bold text-blue-600">{language === "en" ? " INTERNSHIP " : " PRÁCTICAS "}</span>
-      {language === "en" ? "in the field of cybersecurity, where I can apply my skills and continue learning." : "en el ámbito de la ciberseguridad, donde pueda aplicar mis habilidades y seguir aprendiendo."} 
+
     </p>
   </div>
 </MotionWrapper>
