@@ -32,9 +32,9 @@ export default function GlassHeader() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 h-[72px] min-h-[72px] backdrop-blur-md backdrop-filter bg-background/70 dark:bg-background/40 border-b border-border/40">
-      <div className="container max-w-[60%] mx-auto p-4 flex flex-wrap justify-between items-center h-full">
+      <div className="container w-full px-4 h-full flex items-center justify-between">
         <motion.a
-          className="flex items-center text-lg font-medium whitespace-nowrap md:max-w-none mr-3"
+          className="text-lg font-medium whitespace-nowrap overflow-hidden text-ellipsis max-w-[60%]"
           href="/"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
