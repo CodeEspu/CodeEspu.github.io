@@ -31,8 +31,8 @@ export default function GlassHeader() {
   const personalInfo = translations[language]?.personalInfo;
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md backdrop-filter bg-background/70 dark:bg-background/40 border-b border-border/40">
-      <div className="container max-w-4xl mx-auto p-4 flex justify-between items-center">
+    <header className="fixed top-0 left-0 w-full z-50 h-[72px] min-h-[72px] backdrop-blur-md backdrop-filter bg-background/70 dark:bg-background/40 border-b border-border/40">
+      <div className="container max-w-4xl mx-auto p-4 flex justify-between items-center h-full">
         <motion.a className="flex items-center text-lg font-medium" href="/" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           ✨ {personalInfo?.name}
         </motion.a>
@@ -94,14 +94,14 @@ export default function GlassHeader() {
       {isMenuOpen && (
         <div className="md:hidden">
           <motion.div
-            className="fixed inset-0 top-[60px] bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 top-[72px] bg-black/40 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsMenuOpen(false)}
           />
           <motion.nav
-            className="fixed right-0 top-[60px] w-64 h-auto bg-black/60 dark:bg-black/80 backdrop-blur-xl border-l border-border/40 rounded-l-2xl"
+            className="fixed right-0 top-[72px] w-64 h-auto bg-black/60 dark:bg-black/80 backdrop-blur-xl border-l border-border/40 rounded-l-2xl"
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
