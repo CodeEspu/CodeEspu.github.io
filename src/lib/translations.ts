@@ -44,6 +44,15 @@ export const translations: Record<"es" | "en", {
 
     workExperience: [
       {
+        company: "Cipher (Prosegur Security)",
+        location: "Remote",
+        position: "Cyber Threat Intelligence Analyst",
+        period: "July 2025 - Present",
+        achievements: [
+          "➜ Internship period as part of the Cyber Threat Intelligence (CTI) team.",
+        ]
+      },
+      {
         company: "Sound Black SLU",
         location: "Santa Cruz de Tenerife, Spain",
         position: "🔊 Audiovisual Technician",
@@ -139,6 +148,15 @@ export const translations: Record<"es" | "en", {
     },
   
     workExperience: [
+      {
+        company: "Cipher (Prosegur Security)",
+        location: "Remote",
+        position: "Analista de Ciberinteligencia",
+        period: "Julio 2025 - Actualidad",
+        achievements: [
+          "➜ Periodo de prácticas como parte del equipo de Ciberinteligencia (CTI)"
+        ]
+      },
       {
         company: "Sound Black SLU",
         location: "Santa Cruz de Tenerife, España",
