@@ -44,9 +44,9 @@ export const translations: Record<"es" | "en", {
     },
     workExperience: [
       {
-        company: "Cipher (Prosegur Security)",
+        company: "Cipher (A Prosegur Company)",
         location: "Remote",
-        position: "Cyber Threat Intelligence Analyst",
+        position: "Cybersecurity Technician",
         period: "July 2025 - Present",
         achievements: [
           "➜ Internship period as part of the Cyber Threat Intelligence (CTI) team.",
@@ -180,9 +180,9 @@ export const translations: Record<"es" | "en", {
     },
     workExperience: [
       {
-        company: "Cipher (Prosegur Security)",
-        location: "Remote",
-        position: "Analista de Ciberinteligencia",
+        company: "Cipher (A Prosegur Company)",
+        location: "Remoto",
+        position: "Técnico de Ciberseguridad",
         period: "Julio 2025 - Actualidad",
         achievements: [
           "➜ Periodo de prácticas como parte del equipo de Ciberinteligencia (CTI)"
