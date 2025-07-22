@@ -137,7 +137,12 @@ export default function HeroSection() {
         {language === "en" ? " Incident Response " : " Respuesta ante Incidentes "}
       </span>  
       {language === "en" ? "and" : "y"} <span className="font-bold text-cyan-600">{language === "en" ? "Ethical Hacking" : "Hacking Ético"}</span>.<br /> <br />
-      
+
+      🔐 {language === "en" ? "Currently gaining hands-on experience in the field of cybersecurity at" : "Actualmente adquiriendo experiencia práctica en el área de ciberseguridad en"}
+      <span className="font-bold text-yellow-200">{language === "en" ? " Cipher (A Prosegur Company)" : " Cipher (A Prosegur Company)"}</span>
+      {language === "en" ? ", where I am expanding my skills in real-world security operations." : ", donde estoy ampliando mis habilidades en operaciones de seguridad en entornos reales."}
+      <br /> <br />
+
       🔍 {language === "en" ? "Passionate about" : "Apasionado por la"} <span className="font-bold text-blue-600">
         {language === "en" ? "Cybersecurity. " : "Ciberseguridad. "}
       </span> {language === "en" ? "Actually amplifying my knowledge in both offensive " : "Actualmente ampliando mis conocimientos en disciplinas tanto ofensivas "} 
