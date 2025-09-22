@@ -146,7 +146,7 @@ export default function HeroSection() {
       🔍 {language === "en" ? "Passionate about" : "Apasionado por la"} <span className="font-bold text-blue-600">
         {language === "en" ? "Cybersecurity. " : "Ciberseguridad. "}
       </span> {language === "en" ? "Actually amplifying my knowledge in both offensive " : "Actualmente ampliando mis conocimientos en disciplinas tanto ofensivas "} 
-      <span className="font-bold text-red-600">{language === "en" ? "(Read Team) " : "(Red Team) "}</span> 
+      <span className="font-bold text-red-600">{language === "en" ? "(Red Team) " : "(Red Team) "}</span> 
       {language === "en" ? "and defensive " : "como defensivas "}
       <span className="font-bold text-blue-600">{language === "en" ? "(Blue Team) " : "(Blue Team) "}</span>
       {language === "en" ? "disciplines, aiming to develop a comprehensive understanding of the threat and defense landscape." : "con el objetivo de desarrollar una visión integral del panorama de amenazas y defensa."}
