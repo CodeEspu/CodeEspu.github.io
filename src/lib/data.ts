@@ -46,10 +46,12 @@ export const translations: Record<"es" | "en", {
       {
         company: "Cipher (A Prosegur Company)",
         location: "Remote",
-        position: "Cybersecurity Technician",
+        position: "Cybersecurity Analyst",
         period: "July 2025 - Present",
         achievements: [
           "➜ Internship period as part of the Cyber Threat Intelligence (CTI) team.",
+          "➜ Integration and security monitoring on xDriver product",
+          "➜ Improvement of companies' security posture (SPIP)",
         ]
       },
       {
@@ -182,10 +184,12 @@ export const translations: Record<"es" | "en", {
       {
         company: "Cipher (A Prosegur Company)",
         location: "Remoto",
-        position: "Técnico de Ciberseguridad",
+        position: "Analista de Ciberseguridad",
         period: "Julio 2025 - Actualidad",
         achievements: [
-          "➜ Periodo de prácticas como parte del equipo de Ciberinteligencia (CTI)"
+          "➜ Periodo de prácticas como parte del equipo de Ciberinteligencia (CTI)",
+          "➜ Integración y monitorización de seguridad sobre producto xDriver",
+          "➜ Mejora de postura de seguridad de las empresas (SPIP)",
         ]
       },
       {
