@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { translations } from "@/lib/translations";
 import { motion } from "framer-motion";
+import { Github, Linkedin } from "lucide-react";
 import MotionWrapper from "./MotionWrapper";
 
 export default function HeroSection() {
@@ -85,7 +86,7 @@ export default function HeroSection() {
             </motion.div>
             
 
-            <motion.div className="flex flex-col gap-2 items-center md:items-start" variants={containerVariants}>
+            <motion.div className="flex flex-col gap-3 items-center md:items-start" variants={containerVariants}>
               <motion.div className="flex items-center text-sm text-muted-foreground" variants={childVariants} whileHover={{ scale: 1.05, color: "#4b5563" }}>
                 📍 {personalInfo?.location}
               </motion.div>
@@ -94,13 +95,34 @@ export default function HeroSection() {
                 ✉️ {language === "en" ? "Contact Me" : "Contáctame"}
               </motion.a>
 
-              <motion.a href={personalInfo?.github} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors" variants={childVariants} whileHover={{ scale: 1.05, color: "#4b5563" }}>
-                🌟 GitHub
-              </motion.a>
+              <motion.div
+                className="flex items-center gap-3"
+                variants={childVariants}
+              >
+                <motion.a
+                  href={personalInfo?.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="group flex items-center justify-center size-9 rounded-full border border-border/60 text-muted-foreground transition-colors hover:border-purple-500/50 hover:text-foreground hover:bg-purple-500/10"
+                  whileHover={{ scale: 1.08, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Github className="size-4 transition-transform duration-300 group-hover:rotate-6" />
+                </motion.a>
 
-              <motion.a href={personalInfo?.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors" variants={childVariants} whileHover={{ scale: 1.05, color: "#4b5563" }}>
-                🔗 LinkedIn
-              </motion.a>
+                <motion.a
+                  href={personalInfo?.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="group flex items-center justify-center size-9 rounded-full border border-border/60 text-muted-foreground transition-colors hover:border-purple-500/50 hover:text-foreground hover:bg-purple-500/10"
+                  whileHover={{ scale: 1.08, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Linkedin className="size-4 transition-transform duration-300 group-hover:rotate-6" />
+                </motion.a>
+              </motion.div>
             </motion.div>
           </div>
 
