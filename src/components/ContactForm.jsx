@@ -3,9 +3,12 @@ import { Mail, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import MotionWrapper from "./MotionWrapper";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const FORMSUBMIT_ACTION = "https://formsubmit.co/andrestf99@gmail.com";
-const IFRAME_NAME = "portfolio-formsubmit-frame";
-const SUBMIT_TIMEOUT_MS = 25000;
+const FORMSPREE_FORM_ID = import.meta.env.PUBLIC_FORMSPREE_FORM_ID;
+const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+const FORMSPREE_ENDPOINT = FORMSPREE_FORM_ID
+  ? `https://formspree.io/f/${FORMSPREE_FORM_ID}`
+  : "";
+const SUBMIT_TIMEOUT_MS = 15000;
 
 export default function ContactForm() {
   const [language, setLanguage] = useState("en");
@@ -14,9 +17,6 @@ export default function ContactForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const formRef = useRef(null);
   const recaptchaRef = useRef(null);
-  const iframeRef = useRef(null);
-  const timeoutRef = useRef(null);
-  const submittedRef = useRef(false);
 
   useEffect(() => {
     const handleLanguageChange = () => {
@@ -24,11 +24,7 @@ export default function ContactForm() {
     };
 
     window.addEventListener("languageChange", handleLanguageChange);
-    return () => {
-      window.removeEventListener("languageChange", handleLanguageChange);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      iframeRef.current?.remove();
-    };
+    return () => window.removeEventListener("languageChange", handleLanguageChange);
   }, []);
 
   const t =
@@ -48,6 +44,7 @@ export default function ContactForm() {
           success: "Message sent successfully. Thank you!",
           error: "Something went wrong. Please try again.",
           timeout: "The request took too long. Please check your connection and try again.",
+          notConfigured: "Contact form is not configured yet. Please try again later.",
           subject: "New portfolio contact message",
         }
       : {
@@ -65,42 +62,13 @@ export default function ContactForm() {
           success: "Mensaje enviado correctamente. ¡Gracias!",
           error: "Algo salió mal. Por favor, inténtalo de nuevo.",
           timeout: "La solicitud tardó demasiado. Revisa tu conexión e inténtalo de nuevo.",
+          notConfigured: "El formulario aún no está configurado. Inténtalo más tarde.",
           subject: "Nuevo mensaje del portfolio",
         };
 
   const resetCaptcha = () => {
     setIsVerified(false);
     recaptchaRef.current?.reset?.();
-  };
-
-  const finishSuccess = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setStatus("success");
-    formRef.current?.reset();
-    resetCaptcha();
-    submittedRef.current = false;
-  };
-
-  const finishError = (message) => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setStatus("error");
-    setErrorMessage(message);
-    resetCaptcha();
-    submittedRef.current = false;
-  };
-
-  const ensureIframe = () => {
-    iframeRef.current?.remove();
-
-    const iframe = document.createElement("iframe");
-    iframe.name = IFRAME_NAME;
-    iframe.id = IFRAME_NAME;
-    iframe.title = "Hidden form target";
-    iframe.setAttribute("aria-hidden", "true");
-    iframe.style.cssText = "display:none;width:0;height:0;border:0;position:absolute;";
-    document.body.appendChild(iframe);
-    iframeRef.current = iframe;
-    return iframe;
   };
 
   const handleRecaptchaChange = (token) => {
@@ -111,10 +79,16 @@ export default function ContactForm() {
     setIsVerified(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (status === "submitting" || submittedRef.current) return;
+    if (status === "submitting") return;
+
+    if (!FORMSPREE_FORM_ID || !RECAPTCHA_SITE_KEY || !FORMSPREE_ENDPOINT) {
+      setStatus("error");
+      setErrorMessage(t.notConfigured);
+      return;
+    }
 
     const captchaToken = recaptchaRef.current?.getValue?.();
     if (!isVerified || !captchaToken) {
@@ -126,34 +100,51 @@ export default function ContactForm() {
     const form = formRef.current;
     if (!form) return;
 
-    // Keep fields enabled until native submit — disabled inputs are omitted from POST.
-    const iframe = ensureIframe();
-    const submittedAt = Date.now();
-    submittedRef.current = true;
+    const data = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      message: form.message.value.trim(),
+      _subject: t.subject,
+    };
+
     setStatus("submitting");
     setErrorMessage("");
 
-    const onLoad = () => {
-      // Ignore the initial about:blank load that some mobile browsers fire right away.
-      if (!submittedRef.current || Date.now() - submittedAt < 400) return;
-      iframe.removeEventListener("load", onLoad);
-      finishSuccess();
-    };
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS);
 
-    iframe.addEventListener("load", onLoad);
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+        signal: controller.signal,
+      });
 
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
-      iframe.removeEventListener("load", onLoad);
-      finishError(t.timeout);
-    }, SUBMIT_TIMEOUT_MS);
+      clearTimeout(timeoutId);
 
-    form.setAttribute("action", FORMSUBMIT_ACTION);
-    form.setAttribute("method", "POST");
-    form.setAttribute("target", IFRAME_NAME);
+      const payload = await response.json().catch(() => ({}));
 
-    // Native submit avoids React's onSubmit loop and works reliably on mobile.
-    HTMLFormElement.prototype.submit.call(form);
+      if (!response.ok) {
+        const formspreeError =
+          payload?.errors?.[0]?.message || payload?.error || t.error;
+        throw new Error(formspreeError);
+      }
+
+      setStatus("success");
+      form.reset();
+      resetCaptcha();
+    } catch (err) {
+      clearTimeout(timeoutId);
+      setStatus("error");
+      setErrorMessage(
+        err?.name === "AbortError" ? t.timeout : err?.message || t.error
+      );
+      resetCaptcha();
+    }
   };
 
   return (
@@ -168,17 +159,9 @@ export default function ContactForm() {
         <form
           ref={formRef}
           id="contact"
-          action={FORMSUBMIT_ACTION}
-          method="POST"
-          target={IFRAME_NAME}
           className="w-full max-w-lg mx-auto space-y-6"
           onSubmit={handleSubmit}
         >
-          <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_subject" value={t.subject} />
-
           <div className="space-y-2">
             <label htmlFor="name" className="block text-sm font-medium text-foreground/80">
               {t.name}
@@ -221,18 +204,20 @@ export default function ContactForm() {
             ></textarea>
           </div>
 
-          <div className="flex justify-center mb-4 overflow-x-auto">
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey="6LeVD1IrAAAAADFmts1cjkhOp9Rocxd5W1yS09f7"
-              onChange={handleRecaptchaChange}
-              onExpired={handleRecaptchaExpired}
-              onErrored={handleRecaptchaExpired}
-              hl={language}
-              theme="dark"
-              aria-label={t.captchaAria}
-            />
-          </div>
+          {RECAPTCHA_SITE_KEY ? (
+            <div className="flex justify-center mb-4 overflow-x-auto">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={RECAPTCHA_SITE_KEY}
+                onChange={handleRecaptchaChange}
+                onExpired={handleRecaptchaExpired}
+                onErrored={handleRecaptchaExpired}
+                hl={language}
+                theme="dark"
+                aria-label={t.captchaAria}
+              />
+            </div>
+          ) : null}
 
           {status === "success" && (
             <div className="flex items-center gap-2 rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-300">

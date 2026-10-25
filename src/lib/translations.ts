@@ -2,7 +2,6 @@ export const translations: Record<"es" | "en", {
   personalInfo: {
     name: string;
     location: string;
-    email: string;
     github: string;
     linkedin: string;
   };
@@ -42,7 +41,6 @@ export const translations: Record<"es" | "en", {
     personalInfo: {
       name: "Andrés E. Sánchez García",
       location: "Santa Cruz de Tenerife, Spain",
-      email: "andrestf99@gmail.com",
       github: "https://github.com/CodeEspu",
       linkedin: "https://www.linkedin.com/in/andres-s%C3%A1nchez-garc%C3%ADa/",
     },
@@ -152,7 +150,6 @@ export const translations: Record<"es" | "en", {
     personalInfo: {
       name: "Andrés E. Sánchez García",
       location: "Santa Cruz de Tenerife, España",
-      email: "andrestf99@gmail.com",
       github: "https://github.com/CodeEspu",
       linkedin: "https://www.linkedin.com/in/andres-s%C3%A1nchez-garc%C3%ADa/",
     },
