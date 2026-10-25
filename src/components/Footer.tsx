@@ -2,15 +2,16 @@
 import { translations } from "@/lib/data";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Heart, Code2 } from "lucide-react";
 
 export default function Footer() {
-  const [language, setLanguage] = useState<"en" | "es">("en"); // Valor por defecto "en"
+  const [language, setLanguage] = useState<"en" | "es">("en");
 
   useEffect(() => {
     const handleLanguageChange = () => {
       setLanguage(localStorage.getItem("language") as "en" | "es");
     };
-  
+
     window.addEventListener("languageChange", handleLanguageChange);
     return () => window.removeEventListener("languageChange", handleLanguageChange);
   }, []);
@@ -29,44 +30,44 @@ export default function Footer() {
             className="text-sm text-muted-foreground text-center md:text-left"
             whileHover={{ scale: 1.01 }}
           >
-            &copy; {new Date().getFullYear()} {language === "en" ? "Rishikesh S. template | Adapted by" : "Plantilla de Rishikesh S. | Adaptada por"} {translations[language].personalInfo.name}
+            &copy; {new Date().getFullYear()}{" "}
+            {language === "en"
+              ? "Rishikesh S. template | Adapted by"
+              : "Plantilla de Rishikesh S. | Adaptada por"}{" "}
+            {translations[language].personalInfo.name}
           </motion.p>
           <motion.p
-            className="text-sm text-muted-foreground mt-2 md:mt-0 text-center md:text-left"
+            className="text-sm text-muted-foreground mt-2 md:mt-0 text-center md:text-left inline-flex items-center gap-1.5"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.01 }}
           >
-            {language === "en" ? "Born from passion" : "Nacido de la pasión"}{" "}
+            {language === "en" ? "Born from passion" : "Nacido de la pasión"}
             <motion.span
-              className="inline-block"
-              animate={{
-                scale: [1, 1.2, 1],
-              }}
+              className="inline-flex"
+              animate={{ scale: [1, 1.15, 1] }}
               transition={{
                 repeat: Infinity,
                 repeatType: "reverse",
                 duration: 1.5,
               }}
             >
-              ❤️
-            </motion.span>{" "}
-            {language === "en" ? "tested in the lab" : "probado en el laboratorio"}{" "}
+              <Heart className="size-3.5 text-red-400 fill-red-400/30" />
+            </motion.span>
+            {language === "en" ? "tested in the lab" : "probado en el laboratorio"}
             <motion.span
-              className="inline-block"
+              className="inline-flex"
               initial={{ rotate: 0 }}
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.5 }}
             >
-              💻
-            </motion.span>{" "}
+              <Code2 className="size-3.5" />
+            </motion.span>
           </motion.p>
         </motion.div>
       </div>
     </footer>
   );
 }
-
-

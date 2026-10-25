@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { Mail } from "lucide-react";
 import MotionWrapper from "./MotionWrapper";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -36,8 +37,9 @@ export default function ContactForm() {
   return (
     <>
       <MotionWrapper>
-        <h2 className="text-2xl font-bold mb-8 text-center">
-          📧 {language === "en" ? "Contact Me" : "Contáctame"}
+        <h2 className="text-2xl font-bold mb-8 text-center inline-flex items-center justify-center gap-2 w-full">
+          <Mail className="size-6 text-purple-400" />
+          {language === "en" ? "Contact Me" : "Contáctame"}
         </h2>
       </MotionWrapper>
       <MotionWrapper>

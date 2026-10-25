@@ -3,9 +3,9 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 interface TimelineItemProps {
-  title: string;
-  subtitle: string;
-  date: string;
+  title: React.ReactNode;
+  subtitle: React.ReactNode;
+  date: React.ReactNode;
   isLast?: boolean;
   index?: number;
   children?: React.ReactNode;

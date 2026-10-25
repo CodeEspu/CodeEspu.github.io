@@ -12,6 +12,11 @@ export const translations: Record<"es" | "en", {
     position: string;
     period: string;
     achievements: string[];
+    companyEvolution?: Array<{
+      name: string;
+      period: string;
+      current?: boolean;
+    }>;
   }>;
   projects: Array<{
     title: string;
@@ -44,18 +49,23 @@ export const translations: Record<"es" | "en", {
 
     workExperience: [
       {
-        company: "Cipher (Prosegur Security)",
+        company: "Prosegur Cybersecurity",
         location: "Remote",
         position: "Cyber Threat Intelligence Analyst",
         period: "July 2025 - Present",
+        companyEvolution: [
+          { name: "Cipher (A Prosegur Company)", period: "July 2025 - April 2026" },
+          { name: "Prosegur Cybersecurity", period: "April 2026 - Present", current: true },
+        ],
         achievements: [
           "➜ Internship period as part of the Cyber Threat Intelligence (CTI) team.",
+          "➜ Secure Network Architecture Design",
         ]
       },
       {
         company: "Sound Black SLU",
         location: "Santa Cruz de Tenerife, Spain",
-        position: "🔊 Audiovisual Technician",
+        position: "Audiovisual Technician",
         period: "June 2024 - Sept 2024",
         achievements: [
           "➜ Assembly of sound, video, and lighting equipment for events.",
@@ -65,7 +75,7 @@ export const translations: Record<"es" | "en", {
       {
         company: "Sonopluss SL",
         location: "Santa Cruz de Tenerife, Spain",
-        position: "🔊 Sound Technician",
+        position: "Sound Technician",
         period: "Mar 2024 - June 2024",
         achievements: [
           "➜ Assembly and organization of sound equipment and structures.",
@@ -88,7 +98,7 @@ export const translations: Record<"es" | "en", {
       {
         title: "SSRF to XSS: Exploitation Simulation in PDF Generation",
         github: "https://github.com/CodeEspu/SSRFtoXSS",
-        description: "This project demonstrates an attack chain where an SSRF vulnerability is chained to achieve an XSS. The simulation details how wkhtmltopdf can be forced to execute malicious JavaScript on the server, confirming the execution of XSS in the backend. 💻🛡️ "
+        description: "This project demonstrates an attack chain where an SSRF vulnerability is chained to achieve an XSS. The simulation details how wkhtmltopdf can be forced to execute malicious JavaScript on the server, confirming the execution of XSS in the backend."
       }
     ],
     education: [
@@ -149,18 +159,23 @@ export const translations: Record<"es" | "en", {
   
     workExperience: [
       {
-        company: "Cipher (Prosegur Security)",
-        location: "Remote",
+        company: "Prosegur Ciberseguridad",
+        location: "Remoto",
         position: "Analista de Ciberinteligencia",
         period: "Julio 2025 - Actualidad",
+        companyEvolution: [
+          { name: "Cipher (A Prosegur Company)", period: "Julio 2025 - Abril 2026" },
+          { name: "Prosegur Ciberseguridad", period: "Abril 2026 - Actualidad", current: true },
+        ],
         achievements: [
-          "➜ Periodo de prácticas como parte del equipo de Ciberinteligencia (CTI)"
+          "➜ Periodo de prácticas como parte del equipo de Ciberinteligencia (CTI)",
+          "➜ Diseño de arquitectura de redes en base a Ciberseguridad"
         ]
       },
       {
         company: "Sound Black SLU",
         location: "Santa Cruz de Tenerife, España",
-        position: "🔊 Técnico Audiovisual",
+        position: "Técnico Audiovisual",
         period: "Junio 2024 - Septiembre 2024",
         achievements: [
           "➜ Montaje de equipos de sonido, vídeo e iluminación para eventos.",
@@ -170,7 +185,7 @@ export const translations: Record<"es" | "en", {
       {
         company: "Sonopluss SL",
         location: "Santa Cruz de Tenerife, España",
-        position: "🔊 Técnico de Sonido",
+        position: "Técnico de Sonido",
         period: "Mar 2024 - Junio 2024",
         achievements: [
           "➜ Montaje y organización de equipos de sonido y estructuras.",
@@ -193,7 +208,7 @@ export const translations: Record<"es" | "en", {
       {
         title: "SSRF a XSS: Simulación de Explotación en Generación de PDFs",
         github: "https://github.com/CodeEspu/SSRFtoXSS",
-        description: "Este proyecto demuestra una cadena de ataque donde una vulnerabilidad de SSRF es encadenada para lograr un XSS. La simulación detalla cómo se puede forzar a wkhtmltopdf a ejecutar JavaScript malicioso en el servidor, confirmando la ejecución del XSS en el backend. 💻🛡️ "
+        description: "Este proyecto demuestra una cadena de ataque donde una vulnerabilidad de SSRF es encadenada para lograr un XSS. La simulación detalla cómo se puede forzar a wkhtmltopdf a ejecutar JavaScript malicioso en el servidor, confirmando la ejecución del XSS en el backend."
       }
     ],
     education: [

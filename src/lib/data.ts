@@ -13,6 +13,11 @@ export const translations: Record<"es" | "en", {
     position: string;
     period: string;
     achievements: string[];
+    companyEvolution?: Array<{
+      name: string;
+      period: string;
+      current?: boolean;
+    }>;
   }>;
   projects: Array<{
     title: string;
@@ -44,20 +49,25 @@ export const translations: Record<"es" | "en", {
     },
     workExperience: [
       {
-        company: "Cipher (A Prosegur Company)",
+        company: "Prosegur Cybersecurity",
         location: "Remote",
         position: "Cybersecurity Analyst",
         period: "July 2025 - Present",
+        companyEvolution: [
+          { name: "Cipher (A Prosegur Company)", period: "July 2025 - April 2026" },
+          { name: "Prosegur Cybersecurity", period: "April 2026 - Present", current: true },
+        ],
         achievements: [
           "➜ Internship period as part of the Cyber Threat Intelligence (CTI) team.",
           "➜ Integration and security monitoring on xDriver product",
           "➜ Improvement of companies' security posture (SPIP)",
+          "➜ Secure Network Architecture Design",
         ]
       },
       {
         company: "Sound Black SLU",
         location: "Santa Cruz de Tenerife, Spain",
-        position: "🔊 Audiovisual Technician",
+        position: "Audiovisual Technician",
         period: "June 2024 - Sept 2024",
         achievements: [
           "➜ Assembly of sound, video, and lighting equipment for events.",
@@ -67,7 +77,7 @@ export const translations: Record<"es" | "en", {
       {
         company: "Sonopluss SL",
         location: "Santa Cruz de Tenerife, Spain",
-        position: "🔊 Sound Technician",
+        position: "Sound Technician",
         period: "Mar 2024 - June 2024",
         achievements: [
           "➜ Assembly and organization of sound equipment and structures.",
@@ -78,7 +88,7 @@ export const translations: Record<"es" | "en", {
       {
         company: "Eldorado.gg",
         location: "Remote",
-        position: "🎮 Freelance",
+        position: "Freelance",
         period: "Jan 2016 - Jan 2023",
         achievements: [
           "➜ Strategic Thinking & Game Analysis",
@@ -92,7 +102,7 @@ export const translations: Record<"es" | "en", {
       {
         company: "Villarreal C.F",
         location: "Remote",
-        position: "🎮 Professional Gamer",
+        position: "Professional Gamer",
         period: "Mar 2019 - May 2019",
         achievements: [
           "➜ Top-ranking at national and international level",
@@ -182,20 +192,25 @@ export const translations: Record<"es" | "en", {
     },
     workExperience: [
       {
-        company: "Cipher (A Prosegur Company)",
+        company: "Prosegur Ciberseguridad",
         location: "Remoto",
         position: "Analista de Ciberseguridad",
         period: "Julio 2025 - Actualidad",
+        companyEvolution: [
+          { name: "Cipher (A Prosegur Company)", period: "Julio 2025 - Abril 2026" },
+          { name: "Prosegur Ciberseguridad", period: "Abril 2026 - Actualidad", current: true },
+        ],
         achievements: [
           "➜ Periodo de prácticas como parte del equipo de Ciberinteligencia (CTI)",
           "➜ Integración y monitorización de seguridad sobre producto xDriver",
           "➜ Mejora de postura de seguridad de las empresas (SPIP)",
+          "➜ Diseño de arquitectura de redes en base a Ciberseguridad",
         ]
       },
       {
         company: "Sound Black SLU",
         location: "Santa Cruz de Tenerife, España",
-        position: "🔊 Técnico Audiovisual",
+        position: "Técnico Audiovisual",
         period: "Junio 2024 - Septiembre 2024",
         achievements: [
           "➜ Montaje de equipos de sonido, vídeo e iluminación para eventos.",
@@ -205,7 +220,7 @@ export const translations: Record<"es" | "en", {
       {
         company: "Sonopluss SL",
         location: "Santa Cruz de Tenerife, Spain",
-        position: "🔊 Técnico de Sonido",
+        position: "Técnico de Sonido",
         period: "Marzo 2024 - Junio 2024",
         achievements: [
           "➜ Montaje y organización de equipos de sonido y estructuras.",
@@ -216,7 +231,7 @@ export const translations: Record<"es" | "en", {
       {
         company: "Eldorado.gg",
         location: "Remoto",
-        position: "🎮 Freelance",
+        position: "Freelance",
         period: "Enero 2016 - Enero 2023",
         achievements: [
           "➜ Pensamiento estratégico y Análisis del juego",
@@ -230,7 +245,7 @@ export const translations: Record<"es" | "en", {
       {
         company: "Villarreal C.F",
         location: "Remoto",
-        position: "🎮 Jugador Profesional de Videojuegos",
+        position: "Jugador Profesional de Videojuegos",
         period: "Marzo 2019 - Mayo 2019",
         achievements: [
           "➜ Jugador de alto rendimiento a nivel nacional e internacional",

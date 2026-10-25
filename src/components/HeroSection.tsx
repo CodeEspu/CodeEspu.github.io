@@ -1,19 +1,27 @@
 
-
 import { useState, useEffect } from "react";
 import { translations } from "@/lib/translations";
 import { motion } from "framer-motion";
-import { Github, Linkedin } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  MapPin,
+  Mail,
+  Monitor,
+  Lock,
+  Search,
+  Shield,
+} from "lucide-react";
 import MotionWrapper from "./MotionWrapper";
 
 export default function HeroSection() {
-  const [language, setLanguage] = useState<"en" | "es">("en"); // Valor por defecto "en"
+  const [language, setLanguage] = useState<"en" | "es">("en");
 
   useEffect(() => {
     const handleLanguageChange = () => {
       setLanguage(localStorage.getItem("language") as "en" | "es");
     };
-  
+
     window.addEventListener("languageChange", handleLanguageChange);
     return () => window.removeEventListener("languageChange", handleLanguageChange);
   }, []);
@@ -40,7 +48,6 @@ export default function HeroSection() {
     },
   };
 
-  // Asegurar que `translations[language].personalInfo` existe antes de acceder a sus propiedades
   const personalInfo = translations[language]?.personalInfo;
 
   return (
@@ -54,51 +61,61 @@ export default function HeroSection() {
         >
           <div className="text-center md:text-left">
             <motion.h1 className="text-4xl font-bold mb-2" variants={childVariants}>
-              {personalInfo?.name}{" "}
-              <span className="inline-block animate-pulse">✨</span>
+              {personalInfo?.name}
             </motion.h1>
 
-            <motion.p className="text-xl text-muted-foreground mb-4" variants={childVariants}>
-              {language === "en" ? "Cybersecurity Specialist 👨‍💻" : "Especialista en Ciberseguridad 👨‍💻"}
+            <motion.p
+              className="text-xl text-muted-foreground mb-4 inline-flex items-center gap-2 justify-center md:justify-start"
+              variants={childVariants}
+            >
+              <Shield className="size-5 shrink-0 text-purple-400" />
+              {language === "en" ? "Cybersecurity Specialist" : "Especialista en Ciberseguridad"}
             </motion.p>
 
             {/* eJPTv2 Badge */}
             <motion.div className="mb-6 flex justify-center md:justify-start" variants={childVariants}>
-                <a
+              <a
                 href="https://certs.ine.com/65ba4aed-529c-45fa-8968-917ef8b89973"
                 target="_blank"
                 rel="noopener noreferrer"
-                >
+              >
                 <motion.div
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  className="
                   inline-block cursor-default rounded-md border border-purple-500/50 
                   bg-black/20 px-3 py-1 text-sm font-mono font-bold text-purple-300 
                   shadow-md shadow-purple-500/30 transition-all duration-300 
                   hover:border-red-500/70 hover:text-red-300 hover:shadow-md hover:shadow-red-500/50
                 "
-              >
-                {language === "en" ? "eJPTv2" : "eJPTv2"}
-              </motion.div>
+                >
+                  eJPTv2
+                </motion.div>
               </a>
             </motion.div>
-            
 
             <motion.div className="flex flex-col gap-3 items-center md:items-start" variants={containerVariants}>
-              <motion.div className="flex items-center text-sm text-muted-foreground" variants={childVariants} whileHover={{ scale: 1.05, color: "#4b5563" }}>
-                📍 {personalInfo?.location}
+              <motion.div
+                className="flex items-center gap-2 text-sm text-muted-foreground"
+                variants={childVariants}
+                whileHover={{ scale: 1.05, color: "#4b5563" }}
+              >
+                <MapPin className="size-4 shrink-0" />
+                {personalInfo?.location}
               </motion.div>
 
-              <motion.a href="#contact" className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors" variants={childVariants} whileHover={{ scale: 1.05, color: "#4b5563" }}>
-                ✉️ {language === "en" ? "Contact Me" : "Contáctame"}
+              <motion.a
+                href="#contact"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                variants={childVariants}
+                whileHover={{ scale: 1.05, color: "#4b5563" }}
+              >
+                <Mail className="size-4 shrink-0" />
+                {language === "en" ? "Contact Me" : "Contáctame"}
               </motion.a>
 
-              <motion.div
-                className="flex items-center gap-3"
-                variants={childVariants}
-              >
+              <motion.div className="flex items-center gap-3" variants={childVariants}>
                 <motion.a
                   href={personalInfo?.github}
                   target="_blank"
@@ -126,7 +143,6 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Imagen de perfil con verificación y fallback */}
           <motion.div
             className="mt-6 md:mt-0 flex justify-center"
             variants={childVariants}
@@ -140,44 +156,79 @@ export default function HeroSection() {
                 alt="Profile"
                 className="w-48 md:w-60 rounded-full relative ring-4 shadow-[0_0_15px_rgba(0,191,255,0.8)] ring-[#51249d]"
                 style={{ objectFit: "cover" }}
-                onError={(e) => (e.currentTarget.src = "/fallback-image.jpg")} // Imagen de respaldo si profile.jpg no se encuentra
+                onError={(e) => (e.currentTarget.src = "/fallback-image.jpg")}
               />
             </div>
           </motion.div>
         </motion.div>
 
         <MotionWrapper>
-  <div className="bg-gradient-to-r from-blue-500/10 to-pink-500/10 backdrop-blur-sm backdrop-filter p-4 rounded-lg border border-blue-500/20 dark:border-blue-500/10 shadow-sm">
-    <p className="text-muted-foreground pl-4 py-2 mb-4 relative"
-      style={{ textAlign: 'justify' }}>
-      <span className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-500 to-pink-500 rounded-full"></span>
-      💻 <strong>{language === "en" ? "Telecommunications and IT Systems Technician" : "Técnico en Sistemas de Telecomunicaciones e Informáticos"}</strong> {language === "en" ? "with specialized training in" : "con formación especializada en"} <strong>{language === "en" ? "IT Cybersecurity" : "Ciberseguridad IT"}</strong>, {language === "en" ? "covering key areas such as " : "cubriendo áreas clave como "} 
-      <span className="font-bold text-cyan-600">
-        {language === "en" ? "Digital Forensics" : "Informática Forense"}, 
-        {language === "en" ? " Cybersecurity Regulations" : " Normativas de Ciberseguridad"}, 
-        {language === "en" ? " Network Hardening" : " Seguridad en Redes"}, 
-        {language === "en" ? " Incident Response " : " Respuesta ante Incidentes "}
-      </span>  
-      {language === "en" ? "and" : "y"} <span className="font-bold text-cyan-600">{language === "en" ? "Ethical Hacking" : "Hacking Ético"}</span>.<br /> <br />
+          <div className="bg-gradient-to-r from-blue-500/10 to-pink-500/10 backdrop-blur-sm backdrop-filter p-4 rounded-lg border border-blue-500/20 dark:border-blue-500/10 shadow-sm">
+            <div
+              className="text-muted-foreground pl-4 py-2 mb-4 relative space-y-4"
+              style={{ textAlign: "justify" }}
+            >
+              <span className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-500 to-pink-500 rounded-full"></span>
 
-      🔐 {language === "en" ? "Currently gaining hands-on experience in the field of cybersecurity at" : "Actualmente adquiriendo experiencia práctica en el área de ciberseguridad en"}
-      <span className="font-bold text-yellow-200">{language === "en" ? " Cipher (A Prosegur Company)" : " Cipher (A Prosegur Company)"}</span>
-      {language === "en" ? ", where I am expanding my skills in real-world security operations." : ", donde estoy ampliando mis habilidades en operaciones de seguridad en entornos reales."}
-      <br /> <br />
+              <p>
+                <Monitor className="size-4 inline-block align-text-bottom mr-1.5 text-muted-foreground/80" />
+                <strong>
+                  {language === "en"
+                    ? "Telecommunications and IT Systems Technician"
+                    : "Técnico en Sistemas de Telecomunicaciones e Informáticos"}
+                </strong>{" "}
+                {language === "en" ? "with specialized training in" : "con formación especializada en"}{" "}
+                <strong>{language === "en" ? "IT Cybersecurity" : "Ciberseguridad IT"}</strong>,{" "}
+                {language === "en" ? "covering key areas such as " : "cubriendo áreas clave como "}
+                <span className="font-bold text-cyan-600">
+                  {language === "en" ? "Digital Forensics" : "Informática Forense"},
+                  {language === "en" ? " Cybersecurity Regulations" : " Normativas de Ciberseguridad"},
+                  {language === "en" ? " Network Hardening" : " Seguridad en Redes"},
+                  {language === "en" ? " Incident Response " : " Respuesta ante Incidentes "}
+                </span>
+                {language === "en" ? "and" : "y"}{" "}
+                <span className="font-bold text-cyan-600">
+                  {language === "en" ? "Ethical Hacking" : "Hacking Ético"}
+                </span>
+                .
+              </p>
 
-      🔍 {language === "en" ? "Passionate about" : "Apasionado por la"} <span className="font-bold text-blue-600">
-        {language === "en" ? "Cybersecurity. " : "Ciberseguridad. "}
-      </span> {language === "en" ? "Actually amplifying my knowledge in both offensive " : "Actualmente ampliando mis conocimientos en disciplinas tanto ofensivas "} 
-      <span className="font-bold text-red-600">{language === "en" ? "(Red Team) " : "(Red Team) "}</span> 
-      {language === "en" ? "and defensive " : "como defensivas "}
-      <span className="font-bold text-blue-600">{language === "en" ? "(Blue Team) " : "(Blue Team) "}</span>
-      {language === "en" ? "disciplines, aiming to develop a comprehensive understanding of the threat and defense landscape." : "con el objetivo de desarrollar una visión integral del panorama de amenazas y defensa."}
-      <br /> <br />
+              <p>
+                <Lock className="size-4 inline-block align-text-bottom mr-1.5 text-muted-foreground/80" />
+                {language === "en"
+                  ? "Currently gaining hands-on experience in the field of cybersecurity at"
+                  : "Actualmente adquiriendo experiencia práctica en el área de ciberseguridad en"}
+                <span className="font-bold text-yellow-200">
+                  {language === "en" ? " Prosegur Cybersecurity" : " Prosegur Ciberseguridad"}
+                </span>
+                {language === "en"
+                  ? ", where I am expanding my skills in real-world security operations."
+                  : ", donde estoy ampliando mis habilidades en operaciones de seguridad en entornos reales."}
+              </p>
 
-    </p>
-  </div>
-</MotionWrapper>
-
+              <p>
+                <Search className="size-4 inline-block align-text-bottom mr-1.5 text-muted-foreground/80" />
+                {language === "en" ? "Passionate about" : "Apasionado por la"}{" "}
+                <span className="font-bold text-blue-600">
+                  {language === "en" ? "Cybersecurity. " : "Ciberseguridad. "}
+                </span>
+                {language === "en"
+                  ? "Actually amplifying my knowledge in both offensive "
+                  : "Actualmente ampliando mis conocimientos en disciplinas tanto ofensivas "}
+                <span className="font-bold text-red-600">
+                  {language === "en" ? "(Red Team) " : "(Red Team) "}
+                </span>
+                {language === "en" ? "and defensive " : "como defensivas "}
+                <span className="font-bold text-blue-600">
+                  {language === "en" ? "(Blue Team) " : "(Blue Team) "}
+                </span>
+                {language === "en"
+                  ? "disciplines, aiming to develop a comprehensive understanding of the threat and defense landscape."
+                  : "con el objetivo de desarrollar una visión integral del panorama de amenazas y defensa."}
+              </p>
+            </div>
+          </div>
+        </MotionWrapper>
       </div>
     </section>
   );

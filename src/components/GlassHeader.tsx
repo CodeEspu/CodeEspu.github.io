@@ -2,13 +2,28 @@
 import { useState, useEffect } from "react";
 import ThemeToggle from "./ui/theme-toggle";
 import { translations } from "@/lib/data";
-import { Menu, X } from "lucide-react";
+import {
+  Menu,
+  X,
+  Wrench,
+  FolderKanban,
+  Briefcase,
+  GraduationCap,
+  Mail,
+} from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "./ui/button"; 
+import { Button } from "./ui/button";
+
+const navItems = [
+  { id: "skills", icon: Wrench, en: "Skills", es: "Habilidades" },
+  { id: "projects", icon: FolderKanban, en: "Projects", es: "Proyectos" },
+  { id: "experience", icon: Briefcase, en: "Experience", es: "Experiencia" },
+  { id: "education", icon: GraduationCap, en: "Education", es: "Educación" },
+  { id: "contact", icon: Mail, en: "Contact", es: "Contacto" },
+] as const;
 
 export default function GlassHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [shouldRender, setShouldRender] = useState(false);
   const [language, setLanguage] = useState<"en" | "es">(
     (localStorage.getItem("language") as "en" | "es") || "en"
   );
@@ -23,9 +38,9 @@ export default function GlassHeader() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleLanguage = () => {
     const newLanguage = language === "en" ? "es" : "en";
-    localStorage.setItem("language", newLanguage); // ✅ Guardar el nuevo idioma en `localStorage`
+    localStorage.setItem("language", newLanguage);
     setLanguage(newLanguage);
-    window.dispatchEvent(new Event("languageChange")); // ✅ Emitir evento global
+    window.dispatchEvent(new Event("languageChange"));
   };
 
   const personalInfo = translations[language]?.personalInfo;
@@ -39,63 +54,50 @@ export default function GlassHeader() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          ✨ {personalInfo?.name}
+          {personalInfo?.name}
         </motion.a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          {["skills", "projects", "experience", "education", "contact"].map((item, index) => (
-            <motion.a
-              key={item}
-              href={`#${item}`}
-              className="transition-colors hover:text-foreground/80 text-foreground/60 rounded-lg px-3 py-1 hover:bg-foreground/10"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2, delay: index * 0.1 }}
-              whileHover={{ y: -2 }}
-            >
-              <span className="inline-flex items-center gap-1">
-                {language === "en"
-                  ? (item === "skills"
-                      ? <><span className="inline-block">🛠</span> Skills</>
-                      : item === "projects"
-                      ? <><span className="inline-block">🚀</span> Projects</>
-                      : item === "experience"
-                      ? <><span className="inline-block">💼</span> Experience</>
-                      : item === "contact"
-                      ? <><span className="inline-block">📧</span> Contact</>
-                      : <><span className="inline-block">🎓</span> Education</>)
-                  : (item === "skills"
-                      ? <><span className="inline-block">🛠</span> Habilidades</>
-                      : item === "projects"
-                      ? <><span className="inline-block">🚀</span> Proyectos</>
-                      : item === "experience"
-                      ? <><span className="inline-block">💼</span> Experiencia</>
-                      : item === "contact"
-                      ? <><span className="inline-block">📧</span> Contacto</>
-                      : <><span className="inline-block">🎓</span> Educación</>)}
-              </span>
-            </motion.a>
-          ))}
+          {navItems.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.a
+                key={item.id}
+                href={`#${item.id}`}
+                className="transition-colors hover:text-foreground/80 text-foreground/60 rounded-lg px-3 py-1 hover:bg-foreground/10"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2, delay: index * 0.1 }}
+                whileHover={{ y: -2 }}
+              >
+                <span className="inline-flex items-center gap-1.5">
+                  <Icon className="size-3.5" />
+                  {language === "en" ? item.en : item.es}
+                </span>
+              </motion.a>
+            );
+          })}
         </nav>
 
         <div className="flex items-center space-x-2">
           <ThemeToggle />
 
-          {/* Botón de cambio de idioma */}
           <Button variant="ghost" size="icon" onClick={toggleLanguage} className="rounded-full cursor-pointer">
-            <img src={`/flags/${language === "en" ? "es" : "uk"}.png`} alt="Cambiar idioma" className="h-5 w-5" />
+            <img
+              src={`/flags/${language === "en" ? "es" : "uk"}.png`}
+              alt="Cambiar idioma"
+              className="h-5 w-5"
+            />
             <span className="sr-only">Toggle language</span>
           </Button>
 
-          {/* Mobile Menu Button */}
           <motion.button className="md:hidden p-2 text-foreground" onClick={toggleMenu} aria-label="Toggle menu">
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
       {isMenuOpen && (
         <div className="md:hidden">
           <motion.div
@@ -112,37 +114,23 @@ export default function GlassHeader() {
             exit={{ opacity: 0, x: 100 }}
           >
             <div className="p-6 flex flex-col space-y-6">
-              {["skills", "projects", "experience", "education", "contact"].map((item) => (
-                <motion.a
-                  key={item}
-                  href={`#${item}`}
-                  className="text-lg font-medium text-foreground/60 hover:text-foreground/80 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                  whileHover={{ x: 10 }}
-                >
-                  <span className="inline-flex items-center gap-1">
-                    {language === "en"
-                      ? (item === "skills"
-                          ? <><span className="inline-block">🛠</span> Skills</>
-                          : item === "projects"
-                          ? <><span className="inline-block">🚀</span> Projects</>
-                          : item === "experience"
-                          ? <><span className="inline-block">💼</span> Experience</>
-                          : item === "contact"
-                          ? <><span className="inline-block">📧</span> Contact</>
-                          : <><span className="inline-block">🎓</span> Education</>)
-                      : (item === "skills"
-                          ? <><span className="inline-block">🛠</span> Habilidades</>
-                          : item === "projects"
-                          ? <><span className="inline-block">🚀</span> Proyectos</>
-                          : item === "experience"
-                          ? <><span className="inline-block">💼</span> Experiencia</>
-                          : item === "contact"
-                          ? <><span className="inline-block">📧</span> Contacto</>
-                          : <><span className="inline-block">🎓</span> Educación</>)}
-                  </span>
-                </motion.a>
-              ))}
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <motion.a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className="text-lg font-medium text-foreground/60 hover:text-foreground/80 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                    whileHover={{ x: 10 }}
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      <Icon className="size-4" />
+                      {language === "en" ? item.en : item.es}
+                    </span>
+                  </motion.a>
+                );
+              })}
             </div>
           </motion.nav>
         </div>
@@ -150,8 +138,3 @@ export default function GlassHeader() {
     </header>
   );
 }
-
-
-
-
-
