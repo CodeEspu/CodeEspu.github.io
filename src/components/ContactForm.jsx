@@ -3,8 +3,9 @@ import { Mail, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import MotionWrapper from "./MotionWrapper";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/andrestf99@gmail.com";
-const SUBMIT_TIMEOUT_MS = 20000;
+const FORMSUBMIT_ACTION = "https://formsubmit.co/andrestf99@gmail.com";
+const IFRAME_NAME = "portfolio-formsubmit-frame";
+const SUBMIT_TIMEOUT_MS = 25000;
 
 export default function ContactForm() {
   const [language, setLanguage] = useState("en");
@@ -13,6 +14,9 @@ export default function ContactForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const formRef = useRef(null);
   const recaptchaRef = useRef(null);
+  const iframeRef = useRef(null);
+  const timeoutRef = useRef(null);
+  const submittedRef = useRef(false);
 
   useEffect(() => {
     const handleLanguageChange = () => {
@@ -20,7 +24,11 @@ export default function ContactForm() {
     };
 
     window.addEventListener("languageChange", handleLanguageChange);
-    return () => window.removeEventListener("languageChange", handleLanguageChange);
+    return () => {
+      window.removeEventListener("languageChange", handleLanguageChange);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      iframeRef.current?.remove();
+    };
   }, []);
 
   const t =
@@ -40,6 +48,7 @@ export default function ContactForm() {
           success: "Message sent successfully. Thank you!",
           error: "Something went wrong. Please try again.",
           timeout: "The request took too long. Please check your connection and try again.",
+          subject: "New portfolio contact message",
         }
       : {
           title: "Contáctame",
@@ -56,7 +65,43 @@ export default function ContactForm() {
           success: "Mensaje enviado correctamente. ¡Gracias!",
           error: "Algo salió mal. Por favor, inténtalo de nuevo.",
           timeout: "La solicitud tardó demasiado. Revisa tu conexión e inténtalo de nuevo.",
+          subject: "Nuevo mensaje del portfolio",
         };
+
+  const resetCaptcha = () => {
+    setIsVerified(false);
+    recaptchaRef.current?.reset?.();
+  };
+
+  const finishSuccess = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setStatus("success");
+    formRef.current?.reset();
+    resetCaptcha();
+    submittedRef.current = false;
+  };
+
+  const finishError = (message) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setStatus("error");
+    setErrorMessage(message);
+    resetCaptcha();
+    submittedRef.current = false;
+  };
+
+  const ensureIframe = () => {
+    iframeRef.current?.remove();
+
+    const iframe = document.createElement("iframe");
+    iframe.name = IFRAME_NAME;
+    iframe.id = IFRAME_NAME;
+    iframe.title = "Hidden form target";
+    iframe.setAttribute("aria-hidden", "true");
+    iframe.style.cssText = "display:none;width:0;height:0;border:0;position:absolute;";
+    document.body.appendChild(iframe);
+    iframeRef.current = iframe;
+    return iframe;
+  };
 
   const handleRecaptchaChange = (token) => {
     setIsVerified(!!token);
@@ -66,10 +111,10 @@ export default function ContactForm() {
     setIsVerified(false);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (status === "submitting") return;
+    if (status === "submitting" || submittedRef.current) return;
 
     const captchaToken = recaptchaRef.current?.getValue?.();
     if (!isVerified || !captchaToken) {
@@ -81,54 +126,34 @@ export default function ContactForm() {
     const form = formRef.current;
     if (!form) return;
 
-    const formData = new FormData(form);
-    formData.set("_captcha", "false");
-    formData.set("_template", "table");
-    formData.set("_subject", language === "en" ? "New portfolio contact message" : "Nuevo mensaje del portfolio");
-    formData.set("g-recaptcha-response", captchaToken);
-
+    // Keep fields enabled until native submit — disabled inputs are omitted from POST.
+    const iframe = ensureIframe();
+    const submittedAt = Date.now();
+    submittedRef.current = true;
     setStatus("submitting");
     setErrorMessage("");
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS);
+    const onLoad = () => {
+      // Ignore the initial about:blank load that some mobile browsers fire right away.
+      if (!submittedRef.current || Date.now() - submittedAt < 400) return;
+      iframe.removeEventListener("load", onLoad);
+      finishSuccess();
+    };
 
-    try {
-      const response = await fetch(FORMSUBMIT_ENDPOINT, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
-        body: formData,
-        signal: controller.signal,
-      });
+    iframe.addEventListener("load", onLoad);
 
-      clearTimeout(timeoutId);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      iframe.removeEventListener("load", onLoad);
+      finishError(t.timeout);
+    }, SUBMIT_TIMEOUT_MS);
 
-      let payload = null;
-      try {
-        payload = await response.json();
-      } catch {
-        payload = null;
-      }
+    form.setAttribute("action", FORMSUBMIT_ACTION);
+    form.setAttribute("method", "POST");
+    form.setAttribute("target", IFRAME_NAME);
 
-      if (!response.ok || payload?.success === "false" || payload?.ok === false) {
-        throw new Error(payload?.message || t.error);
-      }
-
-      setStatus("success");
-      form.reset();
-      setIsVerified(false);
-      recaptchaRef.current?.reset?.();
-    } catch (err) {
-      clearTimeout(timeoutId);
-      setStatus("error");
-      setErrorMessage(
-        err?.name === "AbortError" ? t.timeout : err?.message || t.error
-      );
-      recaptchaRef.current?.reset?.();
-      setIsVerified(false);
-    }
+    // Native submit avoids React's onSubmit loop and works reliably on mobile.
+    HTMLFormElement.prototype.submit.call(form);
   };
 
   return (
@@ -143,11 +168,16 @@ export default function ContactForm() {
         <form
           ref={formRef}
           id="contact"
+          action={FORMSUBMIT_ACTION}
+          method="POST"
+          target={IFRAME_NAME}
           className="w-full max-w-lg mx-auto space-y-6"
           onSubmit={handleSubmit}
-          noValidate={false}
         >
-          <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+          <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_subject" value={t.subject} />
 
           <div className="space-y-2">
             <label htmlFor="name" className="block text-sm font-medium text-foreground/80">
@@ -158,9 +188,8 @@ export default function ContactForm() {
               name="name"
               id="name"
               required
-              disabled={status === "submitting"}
               placeholder={t.namePlaceholder}
-              className="w-full px-4 py-2 bg-background/50 border border-border rounded-lg focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500 outline-none transition-all disabled:opacity-60"
+              className="w-full px-4 py-2 bg-background/50 border border-border rounded-lg focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500 outline-none transition-all"
             />
           </div>
 
@@ -173,9 +202,8 @@ export default function ContactForm() {
               name="email"
               id="email"
               required
-              disabled={status === "submitting"}
               placeholder={t.emailPlaceholder}
-              className="w-full px-4 py-2 bg-background/50 border border-border rounded-lg focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500 outline-none transition-all disabled:opacity-60"
+              className="w-full px-4 py-2 bg-background/50 border border-border rounded-lg focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500 outline-none transition-all"
             />
           </div>
 
@@ -188,9 +216,8 @@ export default function ContactForm() {
               id="message"
               required
               rows="5"
-              disabled={status === "submitting"}
               placeholder={t.messagePlaceholder}
-              className="w-full px-4 py-2 bg-background/50 border border-border rounded-lg focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500 outline-none transition-all resize-none disabled:opacity-60"
+              className="w-full px-4 py-2 bg-background/50 border border-border rounded-lg focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500 outline-none transition-all resize-none"
             ></textarea>
           </div>
 
